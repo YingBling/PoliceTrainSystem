@@ -1,60 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24766c0a-a9c1-4041-a846-253a14e40280" name="Default Changelist" comment="设计课程/科目类">
-      <change afterPath="$PROJECT_DIR$/PoliceTrainSystem/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/migrations/0002_alter_user_group.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/templates/user/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/.babelrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/.eslintignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/.eslintrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/.postcssrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/build/build.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/build/check-versions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/build/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/build/utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/build/vue-loader.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/build/webpack.base.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/build/webpack.dev.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/build/webpack.prod.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/config/dev.env.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/config/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/config/prod.env.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/config/test.env.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/src/App.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/src/assets/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/src/components/HelloWorld.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/src/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/src/router/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/static/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/test/e2e/custom-assertions/elementCount.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/test/e2e/nightwatch.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/test/e2e/runner.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/test/e2e/specs/test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/test/unit/.eslintrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/test/unit/jest.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/test/unit/setup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/test/unit/specs/HelloWorld.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PoliceTrainSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PoliceTrainSystem.iml" afterDir="false" />
+    <list default="true" id="24766c0a-a9c1-4041-a846-253a14e40280" name="Default Changelist" comment="搭建了VUE脚手架">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PoliceTrainSystem/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/PoliceTrainSystem/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PoliceTrainSystem/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/PoliceTrainSystem/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,13 +47,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../pythonProjects/day03/mysite3" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Django migration.PoliceTrainSystem">
     <configuration name="PoliceTrainSystem" type="Python.DjangoServer" factoryName="Django server">
@@ -173,7 +123,7 @@
       <workItem from="1625033514029" duration="5220000" />
       <workItem from="1625557679936" duration="5038000" />
       <workItem from="1625623222489" duration="9136000" />
-      <workItem from="1625644922569" duration="616000" />
+      <workItem from="1625644922569" duration="5572000" />
     </task>
     <task id="LOCAL-00001" summary="创建项目">
       <created>1624953071243</created>
@@ -189,11 +139,28 @@
       <option name="project" value="LOCAL" />
       <updated>1625037227933</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="搭建了VUE脚手架">
+      <created>1625645638900</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1625645638900</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -223,7 +190,9 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="创建项目" />
     <MESSAGE value="设计课程/科目类" />
-    <option name="LAST_COMMIT_MESSAGE" value="设计课程/科目类" />
+    <MESSAGE value="搭建了VUE脚手架" />
+    <MESSAGE value="搭建VUE前端项目" />
+    <option name="LAST_COMMIT_MESSAGE" value="搭建VUE前端项目" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PoliceTrainSystem$PoliceTrainSystem.coverage" NAME="PoliceTrainSystem Coverage Results" MODIFIED="1625033688805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />

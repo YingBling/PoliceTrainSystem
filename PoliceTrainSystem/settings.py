@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'police_train_system',
         'USER': 'root',
         'PASSWORD': '19990318',
-        'HOST': '127.0.0.1',
+        'HOST': '39.105.139.161',
         'PORT': '3306',
     }
 }
