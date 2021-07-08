@@ -10,5 +10,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('register', views.register_view)
+    path('register', views.register_view),  # 注册页面
+    path('login', views.login_view),  # 登录页面
+    path('logout', views.logout_view)
 ]
