@@ -28,6 +28,7 @@
         <option value="$MODULE_DIR$/templates" />
         <option value="$MODULE_DIR$/user/templates" />
         <option value="$MODULE_DIR$/index/templates" />
+        <option value="$MODULE_DIR$/subjectManagement/templates" />
       </list>
     </option>
   </component>
