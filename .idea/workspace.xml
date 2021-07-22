@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24766c0a-a9c1-4041-a846-253a14e40280" name="Default Changelist" comment="前端登录逻辑" />
+    <list default="true" id="24766c0a-a9c1-4041-a846-253a14e40280" name="Default Changelist" comment="前端登录逻辑">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -146,7 +148,8 @@
       <workItem from="1626659137138" duration="2310000" />
       <workItem from="1626743677606" duration="41000" />
       <workItem from="1626748480319" duration="9485000" />
-      <workItem from="1626917007662" duration="2988000" />
+      <workItem from="1626917007662" duration="3095000" />
+      <workItem from="1626921887961" duration="306000" />
     </task>
     <task id="LOCAL-00001" summary="创建项目">
       <created>1624953071243</created>
@@ -176,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626921555785</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="前端登录逻辑">
+      <created>1626921766638</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1626921766638</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
