@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24766c0a-a9c1-4041-a846-253a14e40280" name="Default Changelist" comment="创建项目">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/src/assets/01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/src/assets/02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/src/assets/03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/src/assets/04.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/src/assets/05.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/src/assets/css/global.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webfront/src/components/LoginRegister.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PoliceTrainSystem/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/PoliceTrainSystem/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PoliceTrainSystem/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/PoliceTrainSystem/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/build/webpack.base.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/build/webpack.base.conf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/src/components/HelloWorld.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/src/router/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="24766c0a-a9c1-4041-a846-253a14e40280" name="Default Changelist" comment="前端登录逻辑" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -165,7 +146,7 @@
       <workItem from="1626659137138" duration="2310000" />
       <workItem from="1626743677606" duration="41000" />
       <workItem from="1626748480319" duration="9485000" />
-      <workItem from="1626917007662" duration="2686000" />
+      <workItem from="1626917007662" duration="2988000" />
     </task>
     <task id="LOCAL-00001" summary="创建项目">
       <created>1624953071243</created>
@@ -188,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625645638900</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="前端登录逻辑">
+      <created>1626921555785</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1626921555785</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,7 +222,8 @@
     <MESSAGE value="设计课程/科目类" />
     <MESSAGE value="搭建了VUE脚手架" />
     <MESSAGE value="搭建VUE前端项目" />
-    <option name="LAST_COMMIT_MESSAGE" value="搭建VUE前端项目" />
+    <MESSAGE value="前端登录逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="前端登录逻辑" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
