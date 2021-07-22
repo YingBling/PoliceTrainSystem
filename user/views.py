@@ -3,6 +3,9 @@ import hashlib
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from .models import User
+from rest_framework import viewsets
+from rest_framework import permissions
+from .serializers import UserSerializer
 
 
 # Create your views here.
@@ -100,3 +103,9 @@ def logout_view(request):
         del request.session['username']
         del request.session['uid']
     return resp
+
+
+# 类视图，继承了原生view
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

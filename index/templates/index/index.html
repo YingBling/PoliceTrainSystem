@@ -5,6 +5,7 @@
     <title>首页</title>
 </head>
 <body>
+
 {% if request.session.username %}
     <p>
         欢迎您，用户{{ request.session.username }}
@@ -13,7 +14,7 @@
         <a href="/user/logout">退出登录</a>
     </p>
     <p>
-        <a href="">查看我的信息</a>
+        <a href="/subjectManagement/subjects">课程管理</a>
     </p>
 {% else %}
     {% if request.COOKIES.username %}
@@ -24,7 +25,7 @@
             <a href="/user/logout">退出登录</a>
         </p>
         <p>
-            <a href="">查看我的信息</a>
+            <a href="">课程管理</a>
         </p>
     {% else %}
         <p>
@@ -35,5 +36,6 @@
         </p>
     {% endif %}
 {% endif %}
+
 </body>
 </html>
