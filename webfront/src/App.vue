@@ -1,23 +1,20 @@
+<!--ui结构-->
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view/>
   </div>
 </template>
-
+<!--行为-->
 <script>
 export default {
   name: 'App'
 }
 </script>
-
-<style>
+<!--样式-->
+<style scoped="'scoped">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f5f5f5;
 }
 </style>
