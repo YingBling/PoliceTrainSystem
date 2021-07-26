@@ -38,11 +38,56 @@ INSTALLED_APPS = [
     'subjectManagement',
     'user',
     'index',
+    'corsheaders',  # 跨域中间件
+    'rest_framework',
+    'rest_framework_simplejwt',
 ]
+
+# 用户权限验证使用的模型类
+AUTH_USER_MODEL = "user.User"
+
+# SimpleJWT配置项
+SIMPLE_JWT = {
+    'USER_ID_FIELD': 'username',
+    'USER_ID_CLAIM': 'username'
+}
+
+# REST_FRAMEWORK 配置项
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+# CORS配置项
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+    'VIEW',
+)
+CORS_ALLOW_HEADERS = (
+    'XMLHttpRequest',
+    'X_FILENAME',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # 跨域中间件
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware', # 这个先得关掉不然会报错
     'django.contrib.auth.middleware.AuthenticationMiddleware',

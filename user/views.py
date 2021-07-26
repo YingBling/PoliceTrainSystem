@@ -1,111 +1,164 @@
+# from django.contrib.auth.models import User
+from django.views.decorators.http import require_http_methods
+from rest_framework.decorators import permission_classes, action
 import hashlib
-
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
 from .models import User
-from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework import viewsets, status
 from rest_framework import permissions
 from .serializers import UserSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 # Create your views here.
+# @require_http_methods(["POST"])
+# def register_view(request):
+#     resp = {'code': 201,
+#             'msg': 'success',
+#             'data': ''
+#             }
+#     serializer = UserSerializer(data=request)
+#     if serializer.is_valid():
+#         # 通过数据校验
+#         serializer.save()
+#         resp['data'] = serializer.data
+#     else:
+#         resp['code'] = 403
+#         resp['msg'] = '数据校验失败'
+#         resp['data'] = serializer.errors
+#     return Response(resp)
 
-def register_view(request):
-    # 注册
-    # GET 返回页面
-    # POST 处理提交数据
-    # 两次密码一致，用户名是否存在
-    # 插入数据
-    if request.method == 'GET':
-        return render(request, 'user/register.html')
-    elif request.method == 'POST':
-        # 处理提交数据
-        # 1.两次密码一致
-        # 2.用户名是否可用
-        # 3.提交给数据库
-        username = request.POST['username']
-        password_1 = request.POST['password_1']
-        password_2 = request.POST['password_2']
-        # 两次密码一致
-        if password_2 != password_1:
-            return HttpResponse('两次输入的密码不一致！')
-        # 对密码进行哈希处理，计算出定长的，不可逆的值，MD5，sha-256
-        # 1.定长输出 2.不可逆，无法反向计算 3.雪崩效应
+
+# 登录&注册视图集，对所有用户开放
+class LoginAndRegister(viewsets.ViewSet):
+    def register(self, request):
+        resp = {'code': 201,
+                'msg': 'success',
+                'data': ''
+                }
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            # 通过数据校验
+            serializer.save()
+            resp['data'] = serializer.data
+        else:
+            resp['code'] = 403
+            resp['msg'] = '数据校验失败'
+            resp['data'] = serializer.errors
+        return Response(resp)
+
+    def login(self, request):
+        resp = {
+            'code': 200,
+            'msg': 'success',
+            'data': ''
+        }
         m = hashlib.md5()
-        m.update(password_1.encode())
-        password_m = m.hexdigest()
-        old_users = User.objects.filter(username=username)
-        # 有唯一索引要用try
-        if old_users:
-            return HttpResponse("该用户名已存在！")
-        # 提交给数据库
-        try:
-            user = User.objects.create(username=username, password=password_m)
-        except Exception as e:
-            print("---create user error! %s" % (e))
-            return HttpResponse("该用户名已存在！")
-        # 设置免登陆
-        request.session['username'] = username
-        request.session['uid'] = user.id
-        return HttpResponseRedirect('/index')
-
-
-def login_view(request):
-    if request.method == 'GET':
-        # 如果发送给服务器的是get请求的话，渲染登录页面
-        # 如果存在session的话，跳转到主页，如果不存在的话检查cookie
-        if request.session.get('username') and request.session.get('uid'):
-            # 这里应该302跳转网站首页
-            return HttpResponseRedirect('/index')
-        c_username = request.COOKIES.get("username")
-        c_uid = request.COOKIES.get('uid')
-        if c_username and c_uid:
-            # 登录状态是以cookie保存的，需要转存到session中
-            request.session['username'] = c_username
-            request.session['uid'] = c_uid
-            # 这里应该302跳转网站首页
-            return HttpResponseRedirect('/index')
-        return render(request, 'user/login.html')
-    elif request.method == 'POST':
-        # 如果发送给服务器的是post请求的话，验证表单的账号密码
-        username = request.POST['username']
-        password = request.POST['password']
-
-        try:
-            user = User.objects.get(username=username)
-        except Exception as e:
-            print("---login user error %s" % (e))
-            return HttpResponse("登录失败，用户名或密码错误！")
-        # 计算密码的哈希值
-        m = hashlib.md5()
+        username = request.data['username']
+        password = request.data['password']
         m.update(password.encode())
-        if m.hexdigest() != user.password:
-            return HttpResponse("登陆失败，用户名或密码错误！")
-        # 记录会话状态
-        request.session['username'] = username
-        request.session['uid'] = user.id
-        resp = HttpResponseRedirect('/index')
-        # 判断用户是否点选了'3天免登陆'
-        if 'remember' in request.POST:
-            resp.set_cookie('uid', user.id, 3600 * 24 * 3)
-            resp.set_cookie('username', username, 3600 * 24 * 3)
-        return resp
+        pwdhash = m.hexdigest()
+        if username == "" or password == "":
+            resp['code'] = 403
+            resp['msg'] = '用户名或密码为空'
+        else:
+            user = User.objects.filter(username=username, password=pwdhash).first()
+            if user:
+                serializer = UserSerializer(user)
+                refresh = RefreshToken.for_user(user)
+                resp['data'] = str(refresh.access_token)  # 这里返回一个token
+            else:
+                resp['msg'] = '用户名或密码错误'
+                resp['code'] = 404
+        return Response(resp)
 
 
-def logout_view(request):
-    c_username, c_uid = request.COOKIES.get('username'), request.COOKIES.get('uid')
-    s_username, s_uid = request.session.get('username'), request.session.get('uid')
-    resp = HttpResponseRedirect('/index')
-    if c_username and c_uid:
-        resp.delete_cookie('username')
-        resp.delete_cookie('uid')
-    if s_username and s_uid:
-        del request.session['username']
-        del request.session['uid']
-    return resp
-
-
-# 类视图，继承了原生view
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    # 注册一个新用户用户
+    # def register(self, request):
+    #     resp = {'code': 201,
+    #             'msg': 'success',
+    #             'data': ''
+    #             }
+    #     serializer = UserSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         # 通过数据校验
+    #         serializer.save()
+    #         resp['data'] = serializer.data
+    #     else:
+    #         resp['code'] = 403
+    #         resp['msg'] = '数据校验失败'
+    #         resp['data'] = serializer.errors
+    #     return Response(resp)
+
+    # if username == '' or password == '':
+    #     resp = {
+    #         'code': 401.1,
+    #         'msg': '用户名或密码为空',
+    #         'data': ''
+    #     }
+    #     return Response(resp, status=status.HTTP_403_FORBIDDEN)
+    # user = User.objects.filter(username=username)  # 返回user的集合
+    # if user.exists():  # 如果存在该用户的话
+    #     resp = {
+    #         'code': 401.2,
+    #         'msg': '该用户已存在',
+    #         'data': ''
+    #     }
+    #     return Response(resp)
+    # else:
+    #     m = hashlib.md5()
+    #     m.update(password.encode())
+    #     pwd = m.hexdigest()  # 用MD5加密密码
+    #     user = User.objects.create(username=username, password=pwd)
+    #     user.save()
+    #     serializer = UserSerializer(user)
+    #     resp = {
+    #         'code': 200,
+    #         'msg': 'success',
+    #         'data': serializer.data
+    #     }
+    #     return Response(resp, status=status.HTTP_201_CREATED)
+
+    def list(self, request):  # 这个接口不对外使用
+        resp = {
+            'code': 200,
+            'msg': 'success'
+        }
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        resp['data'] = serializer.data
+        return Response(resp)
+
+    # 查询用户的个人信息，这里只有用户自己能看见
+    def retrieve(self, request, pk):
+        resp = {
+            'code': 200,
+            'msg': 'success'
+        }
+        try:
+            user = User.objects.get(username=pk)
+        except User.DoesNotExist:
+            resp['code'] = 404
+            resp['msg'] = '该用户不存在'
+            return Response(resp)
+        serializer = UserSerializer(user)
+        resp['data'] = serializer.data
+        return Response(resp)
+
+    def update(self, request, pk):
+        resp = {'code': 200,
+                'msg': 'success'}
+        user = User.objects.filter(id=pk).first()
+        user_serializer = UserSerializer(user, request.data)
+        if user_serializer.is_valid():  # 验证数据是否正确
+            user_serializer.save()
+            resp['data'] = user_serializer.data
+        else:
+            resp['code'] = 401
+            resp['msg'] = '数据校验失败'
+            resp['data'] = user_serializer.errors
+        return Response(resp)

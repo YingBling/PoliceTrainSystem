@@ -5,17 +5,16 @@
 # @File : urls.py
 # @Software: PyCharm
 
-from django.urls import path
+from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from . import views
 
 router = DefaultRouter()
 router.register('', views.UserViewSet)
-
 urlpatterns = [
-    path('register', views.register_view),  # 注册页面
-    path('login', views.login_view),  # 登录页面
-    path('logout', views.logout_view)
+    path('all/', views.UserViewSet.as_view({'get': 'list'})),
+    path('register/', views.LoginAndRegister.as_view({'post': 'register'})),
+    path('login/', views.LoginAndRegister.as_view({'post': 'login'})),
+    path('update/<int:pk>/', views.UserViewSet.as_view({'post': 'update'}))
 ]
-urlpatterns += router.urls
