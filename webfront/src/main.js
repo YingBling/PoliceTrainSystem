@@ -6,14 +6,17 @@ import App from './App'
 import router from './router'
 import VueResource from 'vue-resource'
 import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
 import axios from 'axios'
+import Router from "vue-router";
 
 Vue.use(ElementUI)
 Vue.use(VueResource)
+Vue.use(Router)
+
 // axios.defaults.baseURL = 'http://127.0.0.1:8000/api/user/'
-Vue.prototype.$axios = axios    //全局注册，使用方法为:this.$axios
-
-
+Vue.prototype.$axios = axios // 全局注册，使用方法为:this.$axios
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

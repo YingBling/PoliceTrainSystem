@@ -1,28 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="24766c0a-a9c1-4041-a846-253a14e40280" name="Default Changelist" comment="更新Settings设置，数据库迁移到云服务器上。">
-      <change afterPath="$PROJECT_DIR$/index/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index/templates/index/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/migrations/0003_auto_20210708_1128.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/lesson/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/lesson/migrations/0002_alter_lesson_learners.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/lesson/migrations/0003_auto_20210828_1823.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/lesson/migrations/0004_auto_20210828_1839.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/lesson/migrations/0005_alter_chapterlesson_prev.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/lesson/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/lesson/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/migrations/0002_user_email.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/migrations/0003_auto_20210828_1839.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/migrations/0006_auto_20210902_1019.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/migrations/0007_auto_20210902_1123.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/migrations/0008_auto_20210903_1039.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webfront/postcss.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webfront/src/components/Index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webfront/src/components/Navbar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webfront/src/router/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/PoliceTrainSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PoliceTrainSystem.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PoliceTrainSystem/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/PoliceTrainSystem/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PoliceTrainSystem/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/PoliceTrainSystem/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PoliceTrainSystem/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/PoliceTrainSystem/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/user/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/index/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/index/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/index/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/index/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/index/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/templates/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/index/templates/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/index/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/index/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/subjectManagement/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lesson/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/subjectManagement/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lesson/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/subjectManagement/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subjectManagement/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subjectManagement/migrations/0002_alter_subject_table.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subjectManagement/migrations/0003_alter_lesson_pre_lesson.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subjectManagement/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lesson/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/subjectManagement/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subjectManagement/serializer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subjectManagement/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lesson/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/subjectManagement/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subjectManagement/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/rbac/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rbac/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lesson/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/rbac/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/serializers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/templates/user/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/templates/user/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/rbac/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/src/components/HelloWorld.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/components/Home.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/components/LoginRegister.vue" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/src/components/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/router/home.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +88,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -66,21 +120,47 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/user/templates/user" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../djangoProject" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="ts.external.directory.path" value="D:\JetBrains\PyCharm 2021.1.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\projects\PoliceTrainSystem" />
+      <recent name="D:\projects\PoliceTrainSystem\apps" />
       <recent name="D:\projects\PoliceTrainSystem\user\templates\user" />
     </key>
   </component>
   <component name="RunManager" selected="Django migration.PoliceTrainSystem">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PoliceTrainSystem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="PoliceTrainSystem" type="Python.DjangoServer" factoryName="Django server">
       <module name="PoliceTrainSystem" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -126,10 +206,40 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="migrate rbac 0001_initial" type="com.chornsby.intellij.plugins.django.MigrationRunConfigurationType" factoryName="Django migration" temporary="true">
+      <module name="PoliceTrainSystem" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
+      <option name="PARAMETERS" value="migrate rbac 0001_initial" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Django migration.PoliceTrainSystem" />
+      <item itemvalue="Django migration.migrate rbac 0001_initial" />
       <item itemvalue="Django Server.PoliceTrainSystem" />
+      <item itemvalue="Python.test" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.test" />
+        <item itemvalue="Django migration.migrate rbac 0001_initial" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -150,6 +260,28 @@
       <workItem from="1625644922569" duration="5572000" />
       <workItem from="1625710617530" duration="464000" />
       <workItem from="1625711095773" duration="11810000" />
+      <workItem from="1627804115753" duration="1000" />
+      <workItem from="1627898623215" duration="568000" />
+      <workItem from="1627982126559" duration="6000" />
+      <workItem from="1627982232993" duration="46000" />
+      <workItem from="1629771200393" duration="23000" />
+      <workItem from="1629796618418" duration="927000" />
+      <workItem from="1630035259205" duration="3248000" />
+      <workItem from="1630049316026" duration="1331000" />
+      <workItem from="1630050667775" duration="3885000" />
+      <workItem from="1630055042906" duration="1646000" />
+      <workItem from="1630134549764" duration="6357000" />
+      <workItem from="1630141099500" duration="316000" />
+      <workItem from="1630141428698" duration="7312000" />
+      <workItem from="1630287529484" duration="27793000" />
+      <workItem from="1630372320168" duration="24520000" />
+      <workItem from="1630546586954" duration="15741000" />
+      <workItem from="1630634240423" duration="16836000" />
+      <workItem from="1630662509185" duration="1332000" />
+      <workItem from="1630665185449" duration="12437000" />
+      <workItem from="1630730121080" duration="13107000" />
+      <workItem from="1630764942460" duration="294000" />
+      <workItem from="1630894018922" duration="2568000" />
     </task>
     <task id="LOCAL-00001" summary="创建项目">
       <created>1624953071243</created>
@@ -220,7 +352,24 @@
     <MESSAGE value="搭建VUE前端项目" />
     <option name="LAST_COMMIT_MESSAGE" value="搭建VUE前端项目" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/user/models.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/venv/Lib/site-packages/django/contrib/auth/base_user.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PoliceTrainSystem$PoliceTrainSystem.coverage" NAME="PoliceTrainSystem Coverage Results" MODIFIED="1625033688805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
+    <SUITE FILE_PATH="coverage/PoliceTrainSystem$test.coverage" NAME="test Coverage Results" MODIFIED="1630675241137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PoliceTrainSystem$PoliceTrainSystem.coverage" NAME="PoliceTrainSystem Coverage Results" MODIFIED="1630675254748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
+    <SUITE FILE_PATH="coverage/PoliceTrainSystem$migrate_rbac_0001_initial.coverage" NAME="migrate rbac 0001_initial Coverage Results" MODIFIED="1630141702653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
