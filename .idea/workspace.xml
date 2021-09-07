@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24766c0a-a9c1-4041-a846-253a14e40280" name="Default Changelist" comment="更新用户序列化器" />
+    <list default="true" id="24766c0a-a9c1-4041-a846-253a14e40280" name="Default Changelist" comment="最近一次同步" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,6 +32,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -282,7 +283,21 @@
       <option name="project" value="LOCAL" />
       <updated>1631017038842</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="最近一次同步">
+      <created>1631020337690</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1631020337690</updated>
+    </task>
+    <task id="LOCAL-00010" summary="最近一次同步">
+      <created>1631020587441</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1631020587441</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,6 +316,56 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="156d3d23-1d40-4eaf-8697-6b77fbe8c2ab">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:D:/projects/PoliceTrainSystem/webfront" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="8253760e-801c-4a75-9b79-310d70026d43">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -320,6 +385,12 @@
         </entry>
       </map>
     </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="156d3d23-1d40-4eaf-8697-6b77fbe8c2ab" value="TOOL_WINDOW" />
+        <entry key="8253760e-801c-4a75-9b79-310d70026d43" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
@@ -330,7 +401,8 @@
     <MESSAGE value="搭建VUE前端项目" />
     <MESSAGE value="2021.9.6" />
     <MESSAGE value="更新用户序列化器" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新用户序列化器" />
+    <MESSAGE value="最近一次同步" />
+    <option name="LAST_COMMIT_MESSAGE" value="最近一次同步" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
