@@ -11,10 +11,18 @@ export default {
 }
 </script>
 <!--样式-->
-<style scoped="'scoped">
+<style lang="scss"  scoped="scoped">
+//引入初始化样式
+@import "/style/main.scss";
+@import "style/base.scss";
+@import "style/mobile.scss";
 #app {
-  /*width: 100vw;*/
-  /*height: 100vh;*/
-  /*background-color: #f5f5f5;*/
+  background: #eee;
+  height: 100vh;
+  overflow: hidden;
+  font-weight: 400 !important;
+}
+.el-button{
+  font-weight: 400 !important;
 }
 </style>
