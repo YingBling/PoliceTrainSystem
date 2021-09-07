@@ -5,7 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24766c0a-a9c1-4041-a846-253a14e40280" name="Default Changelist" comment="2021.9.6">
+      <change afterPath="$PROJECT_DIR$/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/migrations/0009_auto_20210907_1627.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/migrations/0010_user_icon.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/migrations/0011_rename_icon_user_avatar.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rbac/migrations/0012_auto_20210907_1658.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rbac/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/rbac/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rbac/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/rbac/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rbac/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/rbac/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +64,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../djangoProject" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../flexlightsys" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -211,7 +225,10 @@
       <workItem from="1630665185449" duration="12437000" />
       <workItem from="1630730121080" duration="13107000" />
       <workItem from="1630764942460" duration="294000" />
-      <workItem from="1630894018922" duration="3375000" />
+      <workItem from="1630894018922" duration="15881000" />
+      <workItem from="1630995678837" duration="1450000" />
+      <workItem from="1631002997686" duration="46000" />
+      <workItem from="1631003196254" duration="4814000" />
     </task>
     <task id="LOCAL-00001" summary="创建项目">
       <created>1624953071243</created>
@@ -255,7 +272,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630898023068</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="2021.9.6">
+      <created>1630898064658</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1630898064658</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

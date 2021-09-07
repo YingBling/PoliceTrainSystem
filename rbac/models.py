@@ -119,12 +119,14 @@ class User(AbstractBaseUser):
     username = models.CharField(verbose_name="用户名", max_length=30, unique=True)
     name = models.CharField(verbose_name='用户姓名', max_length=128, blank=True, null=True)
     email = models.CharField(verbose_name='邮件地址', max_length=100, blank=True, null=True)
+    avatar = models.ImageField(verbose_name='个人照片', blank=True, null=True)
+    gender = models.CharField(verbose_name='性别', blank=True, null=True, max_length=20)
     is_active = models.BooleanField(verbose_name='用户状态', default=True)
     is_admin = models.BooleanField(verbose_name='是否为管理员', default=False)
     create_time = models.DateTimeField("创建时间", auto_now_add=True)
-    dept = models.ForeignKey('rbac.Dept', verbose_name="所属部门", on_delete=models.CASCADE, blank=True, null=True)
-    roles = models.ManyToManyField('rbac.Role', verbose_name="关联角色")
-    post = models.ForeignKey('rbac.Post', verbose_name="所属岗位", on_delete=models.CASCADE, blank=True, null=True)
+    dept = models.ForeignKey('rbac.Dept', verbose_name="所属部门", on_delete=models.SET_NULL, blank=True, null=True)
+    roles = models.ManyToManyField('rbac.Role', verbose_name="关联角色", db_constraint=False)
+    post = models.ForeignKey('rbac.Post', verbose_name="所属岗位", on_delete=models.SET_NULL, blank=True, null=True)
 
     objects = UserManager()
 

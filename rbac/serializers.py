@@ -4,12 +4,16 @@
 # @Email: yangyu.cs@outlook.com
 # @File : serializers.py
 # @Software: PyCharm
+from django.db.migrations import serializer
 from django.db.models import QuerySet
+# from rest_framework.fields import CharField
+from rest_framework import serializers
 from rest_framework.serializers import (ModelSerializer, SerializerMethodField,
                                         PrimaryKeyRelatedField,
                                         StringRelatedField, ListSerializer
                                         )
 from rbac.models import Permission, User, Role, Dept, Post
+from django.contrib.auth.hashers import make_password
 
 
 class PermissionSerializer(ModelSerializer):
@@ -77,26 +81,35 @@ class UserSerializer(ModelSerializer):
     User序列化器
     roles:一个用户可能对应多个角色
     """
-
     # 获取用户的所有权限，并将其序列化
     # permissions = SerializerMethodField('get_user_permissions')
+    # required=True为反序列化必填
+    dept_name = serializers.CharField(source='dept.title', allow_null=True, required=False)
+    post_name = serializers.CharField(source='post.title', allow_null=True, read_only=True)
+    roles_list = StringRelatedField(source='roles', many=True, read_only=True)
+
+    # create_time = serializers.DateTimeField(read_only=True)
+
+    # roles_list = serializers.SerializerMethodField('get_roles_list')
 
     class Meta:
         # many=True时使用UserListSerializer
         list_serializer_class = UserListSerializer
         model = User
+
         # fields:序列化的字段
-        fields = ['id', 'username', 'dept', 'post', 'roles', 'password', 'create_time']
+        fields = ['id', 'username', 'name', 'dept_name', 'post_name',
+                  'roles_list', 'password', 'create_time', 'is_active', 'avatar']
         # read_only_fields = ['dept', 'post', 'roles']
         extra_kwargs = {'password': {'write_only': True,
                                      'required': False},
                         'create_time': {'read_only': True}}
-        depth = 0
+        # depth = 0
 
     # 获取用户所有权限
-    def get_user_permissions(self, obj):
+    def get_user_permissions(self, instance):
         # 获取用户所有的角色
-        roles = obj.roles.all()
+        roles = instance.roles.all()
         # 权限集合
         permissions = Permission.objects.none()
         for role in roles:
@@ -106,3 +119,17 @@ class UserSerializer(ModelSerializer):
         permissions = permissions.distinct()
         # 返回用户的权限序列化JSON
         return PermissionSerializer(permissions, many=True).data
+
+    def get_roles_list(self, instance):
+        roles = instance.roles.all()
+        roles_list = Role.objects.none()
+        for role in roles:
+            roles_list = roles_list | role
+        roles_list = roles_list.distinct()
+        return RoleSerializer(roles_list, many=True).data
+
+    def validate_password(self, data):
+        # 密码长度大于6位
+        if len(data) >= 6:
+            # 将密码通过sha256加密后存到数据库中
+            return make_password(data)

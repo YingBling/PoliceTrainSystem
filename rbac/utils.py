@@ -33,16 +33,15 @@ class LoginView(APIView):
         username = request.data['username']
         password = request.data['password']
         user = User.objects.filter(username=username).first()
-
         if user and user.check_password(password):
             resp['msg'] = '登录成功'
             # resp['data'] = UserSerializer(user).data
             refresh = RefreshToken.for_user(user)
             token = {'refresh': str(refresh),
                      'access': str(refresh.access_token)}
-            menu_dict, permission_list = self.get_user_permission(instance=user)
-            resp['data']['menus'] = menu_dict
-            resp['data']['permissions'] = permission_list
+            # menu_dict, permission_list = self.get_user_permission(instance=user)
+            # resp['data']['menus'] = menu_dict
+            # resp['data']['permissions'] = permission_list
             resp['data']['token'] = token
         else:
             resp['code'] = '400'
@@ -140,3 +139,8 @@ class CustomResponse():
     @property
     def get_dict(self):
         return self.__dict__
+
+
+class GetUserPermission(APIView):
+    #
+    pass
