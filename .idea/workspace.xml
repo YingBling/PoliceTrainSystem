@@ -182,10 +182,10 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.test" />
-      <item itemvalue="Django Server.PoliceTrainSystem" />
       <item itemvalue="Django migration.PoliceTrainSystem" />
       <item itemvalue="Django migration.migrate rbac 0001_initial" />
+      <item itemvalue="Django Server.PoliceTrainSystem" />
+      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
