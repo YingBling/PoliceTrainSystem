@@ -15,6 +15,7 @@ urlpatterns = [
     re_path(r'^logout/$', utils.LogoutView.as_view()),
     re_path(r'^users/$', views.UserAPIView.as_view()),
     re_path(r'^users2/$', views.UserView.as_view()),  # 继承ListAPIView
+    re_path(r'^users/$', views.UserAPIView.as_view()),
     re_path(r'^users/(?P<pk>\d+)/$', views.UserAPIView.as_view()),
     re_path(r'^update-password/$', utils.UpdatePasswordView.as_view()),
     path('permission/list/', views.ListPermission.as_view()),
