@@ -23,5 +23,5 @@ urlpatterns = [
     path('dept/list/', views.ListDept.as_view()),
     path('role/list/', views.ListRole.as_view()),
     path('post/list/', views.ListPost.as_view()),
-    # backend-lesson分支
+    # backend-lesson
 ]
