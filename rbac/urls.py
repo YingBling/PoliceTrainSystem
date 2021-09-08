@@ -15,6 +15,7 @@ urlpatterns = [
     re_path(r'^logout/$', utils.LogoutView.as_view()),
     re_path(r'^users/$', views.UserAPIView.as_view()),
     # 测试分支
+
     re_path(r'^users2/$', views.UserView.as_view()),  # 继承ListAPIView
     re_path(r'^users/(?P<pk>\d+)/$', views.UserAPIView.as_view()),
     re_path(r'^update-password/$', utils.UpdatePasswordView.as_view()),
@@ -22,5 +23,4 @@ urlpatterns = [
     path('dept/list/', views.ListDept.as_view()),
     path('role/list/', views.ListRole.as_view()),
     path('post/list/', views.ListPost.as_view()),
-    # backend-lesson分支代码
 ]
