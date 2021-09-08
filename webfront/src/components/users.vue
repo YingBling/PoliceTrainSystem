@@ -252,6 +252,7 @@ export default {
        },
     }
   },
+
   methods: {
     handleSizeChange(newSize){
       this.queryInfo.pagesize=newSize
