@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>这里是首页</span>
+    <span>这里是首页dsrger</span>
   </div>
 </template>
 
