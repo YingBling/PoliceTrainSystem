@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24766c0a-a9c1-4041-a846-253a14e40280" name="Default Changelist" comment="最近一次同步" />
+    <list default="true" id="24766c0a-a9c1-4041-a846-253a14e40280" name="Default Changelist" comment="我改了一下后端">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/assets/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/assets/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/assets/03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/assets/04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/assets/05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/assets/css/global.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/assets/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/components/Navbar.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/src/router/login.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,14 +39,16 @@
   <component name="Git.Merge.Settings">
     <option name="BRANCH" value="main" />
   </component>
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="origin/main" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="test1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -226,6 +242,7 @@
       <workItem from="1631002997686" duration="46000" />
       <workItem from="1631003196254" duration="4814000" />
       <workItem from="1631016819712" duration="371000" />
+      <workItem from="1631067549944" duration="2817000" />
     </task>
     <task id="LOCAL-00001" summary="创建项目">
       <created>1624953071243</created>
@@ -297,7 +314,42 @@
       <option name="project" value="LOCAL" />
       <updated>1631020587441</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="最近一次同步">
+      <created>1631020931497</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1631020931497</updated>
+    </task>
+    <task id="LOCAL-00012" summary="最近一次同步">
+      <created>1631020960823</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1631020960823</updated>
+    </task>
+    <task id="LOCAL-00013" summary="最近一次同步">
+      <created>1631021093951</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1631021093951</updated>
+    </task>
+    <task id="LOCAL-00014" summary="我改了一下前端">
+      <created>1631067812054</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1631067812054</updated>
+    </task>
+    <task id="LOCAL-00015" summary="我改了一下后端">
+      <created>1631067904135</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1631067904135</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,7 +454,9 @@
     <MESSAGE value="2021.9.6" />
     <MESSAGE value="更新用户序列化器" />
     <MESSAGE value="最近一次同步" />
-    <option name="LAST_COMMIT_MESSAGE" value="最近一次同步" />
+    <MESSAGE value="我改了一下前端" />
+    <MESSAGE value="我改了一下后端" />
+    <option name="LAST_COMMIT_MESSAGE" value="我改了一下后端" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
