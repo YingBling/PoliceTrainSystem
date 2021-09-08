@@ -23,4 +23,5 @@ urlpatterns = [
     path('role/list/', views.ListRole.as_view()),
     path('post/list/', views.ListPost.as_view()),
     ### test1
+    ## test2
 ]
