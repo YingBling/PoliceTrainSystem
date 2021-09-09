@@ -17,6 +17,7 @@ from .serializers import UserSerializer
 
 # 登录视图
 class LoginView(APIView):
+
     authentication_classes = []
     permission_classes = []
     """
