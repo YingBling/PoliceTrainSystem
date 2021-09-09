@@ -17,7 +17,6 @@ from .serializers import UserSerializer
 
 # 登录视图
 class LoginView(APIView):
-
     authentication_classes = []
     permission_classes = []
     """
@@ -144,6 +143,9 @@ class CustomResponse():
         return self.__dict__
 
 
-class GetUserPermission(APIView):
-    #
-    pass
+# 获取用户个人信息
+class GetUserInfo(APIView):
+    permission_classes = []
+
+    def get(self, request):
+        username =

@@ -11,6 +11,7 @@ from . import views, utils
 app_name = "rbac"
 urlpatterns = [
     re_path(r'^login/$', utils.LoginView.as_view()),
+    re_path(r'^get_user_info/$', utils.LoginView.as_view()),
     # re_path(r'^login/$', token_obtain_pair),
     re_path(r'^logout/$', utils.LogoutView.as_view()),
     re_path(r'^users/$', views.UserAPIView.as_view()),
