@@ -17,6 +17,7 @@ from .serializers import UserSerializer
 
 # 登录视图
 class LoginView(APIView):
+    authentication_classes = []
     permission_classes = []
     """
     1.前端输入账号&密码，以POST表单的格式发送到后端
@@ -43,6 +44,7 @@ class LoginView(APIView):
             # resp['data']['menus'] = menu_dict
             # resp['data']['permissions'] = permission_list
             resp['data']['token'] = token
+            resp['data']['info'] = UserSerializer(user).data
         else:
             resp['code'] = '400'
             resp['msg'] = '登陆失败，用户名或密码错误！'
