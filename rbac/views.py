@@ -47,6 +47,7 @@ class UserAPIView(APIView):
         if kwargs.get('pk', None):
             user = User.objects.filter(pk=kwargs.get('pk')).first()
             user_ser = UserSerializer(user)
+            return Response(data=user_ser.data)
         # 如果关键字参数中没有pk，则返回全部用户信息
         else:
             users = User.objects.all().filter(is_active=True)

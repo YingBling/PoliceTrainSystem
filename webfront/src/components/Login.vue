@@ -100,7 +100,7 @@ export default {
       if (self.loginForm.username !== '' && self.loginForm.password !== '') {
         self.$axios({
           method: 'post',
-          url: 'http://127.0.0.1:8000/rbac/login/',
+          url: 'http://127.0.0.1:8000/api/login/',
           data: {
             username: self.loginForm.username,
             password: self.loginForm.password
@@ -112,13 +112,10 @@ export default {
                 type: 'success',
                 message: '登录成功'
               })
-              let token = res.data['data']['token']
-              let menus = res.data['data']['menus']
-              let permissions = res.data['data']['permissions']
-              sessionStorage.setItem('data', res.data)
-              this.saveObj('token', token)
-              this.saveObj('menus', menus)
-              this.saveObj('permissions', permissions)
+              sessionStorage.setItem('username',res.data['data']['username'])
+              sessionStorage.setItem('uid',res.data['data']['id'])
+              sessionStorage.setItem('refresh',res.data['data']['refresh'])
+              sessionStorage.setItem('access',res.data['data']['access'])
               this.$router.push('/index')
             } else {
               this.$message({
