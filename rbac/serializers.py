@@ -12,6 +12,9 @@ from rest_framework.serializers import (ModelSerializer, SerializerMethodField,
                                         PrimaryKeyRelatedField,
                                         StringRelatedField, ListSerializer
                                         )
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
+
 from rbac.models import Permission, User, Role, Dept, Post
 from django.contrib.auth.hashers import make_password
 
@@ -84,8 +87,8 @@ class UserSerializer(ModelSerializer):
     # 获取用户的所有权限，并将其序列化
     # permissions = SerializerMethodField('get_user_permissions')
     # required=True为反序列化必填
-    dept_name = serializers.CharField(source='dept.title', allow_null=True, required=False)
-    post_name = serializers.CharField(source='post.title', allow_null=True, read_only=True)
+    dept_name = serializers.CharField(source='dept.title', read_only=True)
+    post_name = serializers.CharField(source='post.title', read_only=True)
     roles_list = StringRelatedField(source='roles', many=True, read_only=True)
 
     # create_time = serializers.DateTimeField(read_only=True)
@@ -133,3 +136,5 @@ class UserSerializer(ModelSerializer):
         if len(data) >= 6:
             # 将密码通过sha256加密后存到数据库中
             return make_password(data)
+
+

@@ -18,9 +18,16 @@ Vue.use(Router)
 // axios.defaults.baseURL = 'http://127.0.0.1:8000/api/user/'
 Vue.prototype.$axios = axios // 全局注册，使用方法为:this.$axios
 /* eslint-disable no-new */
+
+router.beforeEach((to, from, next) => {
+  window.document.title = to.meta.title == undefined ? '执法训练管理平台' : to.meta.title
+
+    next();
+})
 new Vue({
   el: '#app',
   router,
   components: {App},
   template: '<App/>'
 })
+
