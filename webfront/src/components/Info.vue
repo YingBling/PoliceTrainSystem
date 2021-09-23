@@ -67,7 +67,7 @@ export default {
       method: "GET",
       url: `http://127.0.0.1:8000/api/rbac/users/${id}`
     }).then(res => {
-      this.userInfo = res.data
+      this.userInfo = res.data.data
     })
   }
 }

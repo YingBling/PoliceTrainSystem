@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rbac',  # Rbac模块,用户权限验证模型
     'apps.lesson',  # 课程管理模块
-    'django_filters'
+    'django_filters',
+    'utils'
 ]
 
 # 用户权限验证使用的模型
@@ -70,7 +71,7 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend',
         'rest_framework.filters.OrderingFilter',
     ],
-
+    'EXCEPTION_HANDLER': 'utils.exceptions.custom_exception_handler',
 }
 
 # CORS配置项

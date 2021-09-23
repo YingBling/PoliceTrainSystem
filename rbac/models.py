@@ -64,8 +64,9 @@ class Dept(models.Model):
     '''
     部门表
     '''
-    title = models.CharField(verbose_name="部门名称", max_length=32)
-    parentDept = models.ForeignKey('self', verbose_name="上级部门", null=True, blank=True, on_delete=models.CASCADE)
+    title = models.CharField(verbose_name="部门名称", max_length=32, unique=True)
+    parent = models.ForeignKey('self', verbose_name="上级部门", related_name='children_dept', null=True,
+                               on_delete=models.SET_NULL)
 
     def __str__(self):
         return f"{self.title}"
@@ -120,14 +121,17 @@ class User(AbstractBaseUser):
     name = models.CharField(verbose_name='用户姓名', max_length=128, blank=True, null=True)
     email = models.CharField(verbose_name='邮件地址', max_length=100, blank=True, null=True)
     avatar = models.ImageField(verbose_name='个人照片', blank=True, null=True)
-    gender = models.CharField(verbose_name='性别', blank=True, null=True, max_length=20)
+    GENDER_CHOICES = (
+        (0, "女"),
+        (1, "男"),
+    )
+    gender = models.IntegerField(choices=GENDER_CHOICES, verbose_name='性别', blank=True, null=True)
     is_active = models.BooleanField(verbose_name='用户状态', default=True)
     is_admin = models.BooleanField(verbose_name='是否为管理员', default=False)
     create_time = models.DateTimeField("创建时间", auto_now_add=True)
     dept = models.ForeignKey('rbac.Dept', verbose_name="所属部门", on_delete=models.SET_NULL, blank=True, null=True)
     roles = models.ManyToManyField('rbac.Role', verbose_name="关联角色", db_constraint=False)
     post = models.ForeignKey('rbac.Post', verbose_name="所属岗位", on_delete=models.SET_NULL, blank=True, null=True)
-
     objects = UserManager()
 
     USERNAME_FIELD = 'username'  # 用户标识符
@@ -159,3 +163,4 @@ class User(AbstractBaseUser):
         # 元数据
         verbose_name = "用户"
         verbose_name_plural = verbose_name
+        ordering = ['name']

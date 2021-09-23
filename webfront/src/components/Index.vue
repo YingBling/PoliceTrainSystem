@@ -228,9 +228,6 @@ export default {
         }
       )
     },
-    userCenter() {
-      this.$router.push()
-    }
 
   }
 

@@ -1,13 +1,21 @@
+from django.db import transaction
 from django.shortcuts import render
 
 # Create your views here
+from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 
+from utils.response import APIResponse
+from utils.views import CustomModelViewSet
 from .models import *
 from .serializers import *
 from rest_framework.views import APIView
+import xlrd
+import openpyxl
 
 
 class CustomPageNumberPagination(PageNumberPagination):
@@ -18,21 +26,6 @@ class CustomPageNumberPagination(PageNumberPagination):
     page_query_param = 'page'
     page_size_query_param = 'size'
     max_page_size = 20
-
-
-# 获取系统的全部权限
-class ListPermission(APIView):
-    def get(self, request):
-        permissions = Permission.objects.all()
-        perms_ser = PermissionSerializer(permissions, many=True)
-        return Response(perms_ser.data)
-
-
-class ListPost(APIView):
-    def get(self, request):
-        posts = Post.objects.all()
-        posts_ser = PostSerializer(posts, many=True)
-        return Response(posts_ser.data)
 
 
 class UserAPIView(APIView):
@@ -47,7 +40,7 @@ class UserAPIView(APIView):
         if kwargs.get('pk', None):
             user = User.objects.filter(pk=kwargs.get('pk')).first()
             user_ser = UserSerializer(user)
-            return Response(data=user_ser.data)
+            return APIResponse(data=user_ser.data)
         # 如果关键字参数中没有pk，则返回全部用户信息
         else:
             users = User.objects.all().filter(is_active=True)
@@ -112,25 +105,88 @@ class UserAPIView(APIView):
             return Response("没有要删除的数据")
 
 
-class UserView(ListAPIView):
-    queryset = User.objects.all()
+class ImportUser(APIView):
+    """
+    批量导入用户，并存入数据库中
+    """
+    authentication_classes = []
+    permission_classes = []
+
+    def post(self, request):
+        gender_dict = {'男': 1, '女': 0}
+        status_dict = {'启用': 1, '禁用': 0}
+        # 获取用户文件
+        file = request.FILES.get('users_file')
+        excel_type = file.name.split('.')[1]
+        if excel_type not in ['xls', 'xlsx']:
+            return APIResponse(code=100, msg='导入用户数据失败')
+        # 解析工作表
+        wb = xlrd.open_workbook(filename=None, file_contents=file.read())
+        # wb = openpyxl.load_workbook(file)
+        table = wb.sheets()[0]  # 可迭代列表
+        nrows = table.nrows
+        try:
+            with transaction.atomic():
+                sql_list = []
+                for i in range(1, nrows):
+                    row_value = table.row_values(i)
+                    sql_list.append(User(username=row_value[0], password=make_password(row_value[1]), name=row_value[2],
+                                         gender=gender_dict[row_value[3]], email=row_value[4],
+                                         is_active=status_dict[row_value[5]]))
+                User.objects.bulk_create(sql_list)
+        except Exception as e:
+            return APIResponse(code=100, msg=str(e))
+        return APIResponse(code=200, msg='导入用户数据成功')
+
+
+class UserViewSet(ModelViewSet):
+    queryset = User.objects.all().all()
     serializer_class = UserSerializer
-    authentication_classes = []  # 认证类
+    authentication_classes = [IsAuthenticated]  # 认证类
     permission_classes = []  # 权限类
     pagination_class = CustomPageNumberPagination  # 分页器
     filter_fields = ['name', 'dept', 'roles', 'post']  # 过滤器
     ordering_fields = ['id', 'dept']  # 排序
 
 
-class ListDept(APIView):
-    def get(self, request):
-        depts = Dept.objects.all()
-        depts_ser = DeptSerializer(depts, many=True)
-        return Response(depts_ser.data)
+class DeptViewSet(ModelViewSet):
+    queryset = Dept.objects.all()
+    serializer_class = DeptSerializer
+    authentication_classes = []
+    # test
+    permission_classes = []
+    pagination_class = CustomPageNumberPagination
+
+    def get_serializer_class(self):
+        if self.action == 'get_dept_tree':
+            return SubDeptSerializer
+        else:
+            return DeptSerializer
+
+    @action(methods=['GET'], detail=True)
+    def get_dept_tree(self, request, **kwargs):
+        """
+        获取部门树
+        test
+        """
+        # root = self.get_queryset().filter(parent=None).first()
+        instance = self.get_object()
+        serializer = self.get_serializer(instance=instance)
+        return APIResponse(data=serializer.data)
 
 
-class ListRole(APIView):
-    def get(self, request):
-        roles = Role.objects.all()
-        roles_ser = RoleSerializer(roles, many=True)
-        return Response(roles_ser.data)
+class PostViewSet(ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    authentication_classes = []
+    permission_classes = []
+
+
+class PermissionViewSet(ModelViewSet):
+    queryset = Permission.objects.all()
+    serializer_class = PermissionSerializer
+
+
+class RoleViewSet(ModelViewSet):
+    queryset = Role.objects.all()
+    serializer_class = RoleSerializer
