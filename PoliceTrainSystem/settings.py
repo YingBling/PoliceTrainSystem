@@ -52,7 +52,7 @@ SIMPLE_JWT = {
     'USER_ID_FIELD': 'username',
     'USER_ID_CLAIM': 'username'
 }
-
+UPDATE_LAST_LOGIN = True
 # REST_FRAMEWORK 配置项
 REST_FRAMEWORK = {
     # 全局认证模块

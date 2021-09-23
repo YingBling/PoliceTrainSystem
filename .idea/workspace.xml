@@ -5,19 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24766c0a-a9c1-4041-a846-253a14e40280" name="Default Changelist" comment="我改了一下后端">
+      <change beforePath="$PROJECT_DIR$/.idea/PoliceTrainSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PoliceTrainSystem.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/.babelrc" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/.babelrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/.eslintignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/.eslintrc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/.postcssrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/.postcssrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/build/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/build/build.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/build/check-versions.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/build/check-versions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/build/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/build/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/build/vue-loader.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/build/vue-loader.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/build/webpack.base.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/build/webpack.base.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/build/webpack.dev.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/build/webpack.dev.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/build/webpack.prod.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/build/webpack.prod.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/config/dev.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/config/dev.env.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/config/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/config/prod.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/config/prod.env.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/config/test.env.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webfront/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webfront/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/webfront/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/assets/01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/assets/02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/assets/03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/assets/04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/assets/05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/assets/css/global.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/assets/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/components/HelloWorld.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/components/Navbar.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webfront/src/router/login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/postcss.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/test/e2e/custom-assertions/elementCount.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/test/e2e/nightwatch.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/test/e2e/runner.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/test/e2e/specs/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/test/unit/.eslintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/test/unit/jest.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/test/unit/setup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webfront/test/unit/specs/HelloWorld.spec.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +68,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="test1" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,6 +80,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectId" id="1uc6y6mfv6X5qYYmEemAZOFg1pC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -73,7 +99,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../flexlightsys" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/webfront" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -85,6 +111,9 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Program File\PyCharmProjects\PoliceTrainSystem\webfront" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\projects\PoliceTrainSystem" />
       <recent name="D:\projects\PoliceTrainSystem\apps" />
@@ -243,6 +272,12 @@
       <workItem from="1631003196254" duration="4814000" />
       <workItem from="1631016819712" duration="371000" />
       <workItem from="1631067549944" duration="2817000" />
+      <workItem from="1631152077016" duration="531000" />
+      <workItem from="1631152623725" duration="654000" />
+      <workItem from="1631153293596" duration="882000" />
+      <workItem from="1631154191125" duration="116000" />
+      <workItem from="1631154320656" duration="2035000" />
+      <workItem from="1631156408186" duration="751000" />
     </task>
     <task id="LOCAL-00001" summary="创建项目">
       <created>1624953071243</created>
@@ -426,7 +461,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="webfront" />
                       </list>
                     </value>
                   </entry>
@@ -456,7 +491,8 @@
     <MESSAGE value="最近一次同步" />
     <MESSAGE value="我改了一下前端" />
     <MESSAGE value="我改了一下后端" />
-    <option name="LAST_COMMIT_MESSAGE" value="我改了一下后端" />
+    <MESSAGE value="我的前端web" />
+    <option name="LAST_COMMIT_MESSAGE" value="我的前端web" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -474,8 +510,8 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PoliceTrainSystem$test.coverage" NAME="test Coverage Results" MODIFIED="1630675241137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PoliceTrainSystem$PoliceTrainSystem.coverage" NAME="PoliceTrainSystem Coverage Results" MODIFIED="1630675254748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
+    <SUITE FILE_PATH="coverage/PoliceTrainSystem$test.coverage" NAME="test Coverage Results" MODIFIED="1630675241137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PoliceTrainSystem$migrate_rbac_0001_initial.coverage" NAME="migrate rbac 0001_initial Coverage Results" MODIFIED="1630141702653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

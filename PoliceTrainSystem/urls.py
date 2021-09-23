@@ -15,12 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from rest_framework_simplejwt.views import token_refresh
+
 from apps.index import views as index_views
+from rbac.utils import LoginView
 from rbac.views import UserAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('user/', include('user.urls')),  # user下的路由交给user.urls处理
     path('index', index_views.index_view),
-    re_path('^rbac/', include('rbac.urls', namespace='rbac')),
+    re_path('^api/rbac/', include('rbac.urls', namespace='rbac')),
+    re_path('^api/login/$',LoginView.as_view()),
+    re_path('^api/refresh/$',token_refresh)
+    # re_path('^api/lesson/', include('lesson.urls', namespace='lesson')),
+    # http://127.0.0.1:8000/rbac/
 ]
