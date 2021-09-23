@@ -6,7 +6,11 @@
 # @Software: PyCharm
 import datetime
 
-name = 'HAHA'
-age = 12
-print(f"name is {name.lower()}, age is {age}.")
-print(datetime.datetime.now())
+# name = 'HAHA'
+# age = 12
+# print(f"name is {name.lower()}, age is {age}.")
+# print(datetime.datetime.now())
+
+string = input('string:')
+m = input('m:')
+print(string)

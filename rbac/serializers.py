@@ -8,6 +8,7 @@ from django.db.migrations import serializer
 from django.db.models import QuerySet
 # from rest_framework.fields import CharField
 from rest_framework import serializers
+from rest_framework.fields import CharField
 from rest_framework.serializers import (ModelSerializer, SerializerMethodField,
                                         PrimaryKeyRelatedField,
                                         StringRelatedField, ListSerializer
@@ -38,22 +39,21 @@ class PostSerializer(ModelSerializer):
 
 
 class DeptSerializer(ModelSerializer):
-    """
-    Dept序列化器
-    """
-    parentDept = SerializerMethodField('get_parentDept')
+    parentID = PrimaryKeyRelatedField(source='parent', queryset=Dept.objects.all(),
+                                      label='上级部门', write_only=True, allow_null=True)
 
     class Meta:
         model = Dept
-        fields = "__all__"
-        # depth = 3
+        fields = ['id', 'title', 'parentID']
 
-    # 获取父部门
-    def get_parentDept(self, obj):
-        if obj.parentDept:
-            return DeptSerializer(obj.parentDept).data
-        else:
-            return None
+
+class SubDeptSerializer(ModelSerializer):
+    # 反向查询，对子部门进行序列化
+    children_dept = DeptSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Dept
+        fields = ['id', 'title', 'children_dept']
 
 
 class RoleSerializer(ModelSerializer):
@@ -136,5 +136,3 @@ class UserSerializer(ModelSerializer):
         if len(data) >= 6:
             # 将密码通过sha256加密后存到数据库中
             return make_password(data)
-
-

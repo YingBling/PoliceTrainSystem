@@ -12,6 +12,8 @@ from rest_framework_simplejwt.views import token_obtain_pair, TokenObtainPairVie
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from utils.response import APIResponse
 from .models import User
 from .serializers import UserSerializer
 
@@ -49,8 +51,11 @@ class LoginView(TokenObtainPairView):
     serializer_class = LoginSerializer
 
 
-# 注销视图
 class LogoutView(APIView):
+    """
+    用户注销接口
+
+    """
     def get(self, request):
         resp = {
             'code': 200,
@@ -60,16 +65,18 @@ class LogoutView(APIView):
         # 修改上次登录时间为注销时间
         user.last_login = timezone.now()
         user.save()  # 这里记得保存一下
-        return Response(resp)
+        return APIResponse(resp)
 
 
 # 更新密码视图
-class UpdatePasswordView(APIView):
+class ResetPasswordView(APIView):
     """
-
+    更新密码视图
     """
+    permission_classes = []
 
     def post(self, request):
+        print(111111)
         resp = {
             'code': 200
         }
@@ -95,10 +102,3 @@ class CustomResponse():
     @property
     def get_dict(self):
         return self.__dict__
-
-# 获取用户个人信息
-# class GetUserInfo(APIView):
-#     permission_classes = []
-#
-#     def get(self, request):
-#         username =
