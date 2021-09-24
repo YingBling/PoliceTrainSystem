@@ -7,14 +7,22 @@ from django.db import models
 
 
 # Create your models here.
+class Button(models.Model):
+    """
+    按钮实体
+    """
+    name = models.CharField(verbose_name="按钮名称",max_length=32)
+
+
 class Menu(models.Model):
     """
     菜单实体
     title
     """
+    # MENU_TYPE = ()
     title = models.CharField(verbose_name='菜单名称', max_length=32, unique=True)
     icon = models.CharField(verbose_name='菜单图标地址', max_length=32, null=True, blank=True)
-
+    type = models.Choices()
     class Meta:
         verbose_name = "菜单"
         verbose_name_plural = verbose_name
