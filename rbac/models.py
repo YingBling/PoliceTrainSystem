@@ -11,18 +11,21 @@ class Button(models.Model):
     """
     按钮实体
     """
-    name = models.CharField(verbose_name="按钮名称",max_length=32)
+    name = models.CharField(verbose_name="按钮名称", max_length=32)
+    value = models.CharField(verbose_name='权限值', max_length=32)
 
 
 class Menu(models.Model):
     """
-    菜单实体
-    title
     """
-    # MENU_TYPE = ()
-    title = models.CharField(verbose_name='菜单名称', max_length=32, unique=True)
-    icon = models.CharField(verbose_name='菜单图标地址', max_length=32, null=True, blank=True)
-    type = models.Choices()
+    parent = models.ForeignKey(to='rbac.Menu', verbose_name='父级菜单',
+                               db_constraint=False, on_delete=models.CASCADE, null=True, blank=True)
+    title = models.CharField(verbose_name='菜单名称', max_length=128, unique=True)
+    icon = models.CharField(verbose_name='菜单图标地址', max_length=128, null=True, blank=True)
+    sort = models.IntegerField(default=1, verbose_name="显示排序",
+                               null=True, blank=True, help_text="显示排序")
+    path = models.CharField(verbose_name='路由地址', null=True, blank=True, max_length=128)
+
     class Meta:
         verbose_name = "菜单"
         verbose_name_plural = verbose_name
@@ -31,26 +34,24 @@ class Menu(models.Model):
         return f"{self.title}"
 
 
-class Permission(models.Model):
-    '''
-    权限表
-    '''
-    # type = models.Choices
-    title = models.CharField(max_length=32, verbose_name="权限名称")
-    url = models.CharField(max_length=128, verbose_name="接口URL", null=True, blank=True)
-    path = models.CharField(max_length=128, verbose_name='前端路由path', null=True, blank=True)
-    # 权限关联菜单
-    menu = models.ForeignKey('rbac.Menu', verbose_name='菜单', on_delete=models.SET_NULL, null=True, blank=True)
-
-    def __str__(self):
-        return f"{self.title}"
+class MenuButton(models.Model):
+    """
+    菜单按钮
+    """
+    menu = models.ForeignKey(to="rbac.Menu", db_constraint=False, on_delete=models.SET_NULL, null=True)
+    title = models.CharField(verbose_name="按钮名", max_length=128)
+    value = models.CharField(verbose_name="权限值", max_length=128)
+    url = models.CharField(verbose_name='接口地址', max_length=128)
+    METHOD_CHOICES = (
+        (0, "GET"),
+        (1, "POST"),
+        (2, "PUT"),
+        (3, "DELETE")
+    )
+    method = models.IntegerField(choices=METHOD_CHOICES, default=0, null=True, blank=True, verbose_name="请求方法")
 
     class Meta:
-        verbose_name = "权限"
-        verbose_name_plural = verbose_name
-
-    def __str__(self):
-        return f"{self.title}"
+        db_table = "rbac_menu_button"
 
 
 class Role(models.Model):
@@ -58,7 +59,8 @@ class Role(models.Model):
     角色表
     '''
     title = models.CharField(verbose_name="角色名称", max_length=32)
-    permissions = models.ManyToManyField('rbac.Permission', verbose_name="角色所有权限", blank=True)
+    menus = models.ManyToManyField('rbac.Menu', verbose_name="角色所有菜单", db_constraint=False)
+    permissions = models.ManyToManyField('rbac.MenuButton', verbose_name="角色所有权限", db_constraint=False)
 
     def __str__(self):
         return f"{self.title}"
@@ -133,12 +135,12 @@ class User(AbstractBaseUser):
         (0, "女"),
         (1, "男"),
     )
-    gender = models.IntegerField(choices=GENDER_CHOICES, verbose_name='性别', blank=True, null=True)
+    gender = models.IntegerField(choices=GENDER_CHOICES, default=1, verbose_name='性别', blank=True, null=True)
     is_active = models.BooleanField(verbose_name='用户状态', default=True)
     is_admin = models.BooleanField(verbose_name='是否为管理员', default=False)
     create_time = models.DateTimeField("创建时间", auto_now_add=True)
     dept = models.ForeignKey('rbac.Dept', verbose_name="所属部门", on_delete=models.SET_NULL, blank=True, null=True)
-    roles = models.ManyToManyField('rbac.Role', verbose_name="关联角色", db_constraint=False)
+    role = models.ManyToManyField('rbac.Role', verbose_name="关联角色", db_constraint=False)
     post = models.ForeignKey('rbac.Post', verbose_name="所属岗位", on_delete=models.SET_NULL, blank=True, null=True)
     objects = UserManager()
 

@@ -10,10 +10,13 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import axios from 'axios'
 import Router from "vue-router";
+import VXEUtils from "vxe-utils";
+import XEUtils from "xe-utils";
 
 Vue.use(ElementUI)
 Vue.use(VueResource)
 Vue.use(Router)
+Vue.use(VXEUtils, XEUtils, {mounts: ['cookie']})
 
 // axios.defaults.baseURL = 'http://127.0.0.1:8000/api/user/'
 Vue.prototype.$axios = axios // 全局注册，使用方法为:this.$axios
@@ -22,7 +25,7 @@ Vue.prototype.$axios = axios // 全局注册，使用方法为:this.$axios
 router.beforeEach((to, from, next) => {
   window.document.title = to.meta.title == undefined ? '执法训练管理平台' : to.meta.title
 
-    next();
+  next();
 })
 new Vue({
   el: '#app',
