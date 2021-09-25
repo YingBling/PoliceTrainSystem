@@ -4,13 +4,15 @@
     <el-header>
       <div>
         <img src=" " alt="">
-        <span>警员用户管理系统</span>
+        <span>执法训练管理平台</span>
       </div>
       <!--      <span>欢迎，username</span>-->
       <el-dropdown trigger="click">
         <span class="header-avatar" style="cursor: pointer">
 <!--                      !!!!!!!!这里需要返回用户信息的姓名-->
-        <span style="margin-left: 5px">{{ this.username }}</span>
+        <span style="margin-left: 5px ;color: #409EFF;
+        font-family:'Microsoft YaHei';font-size: medium">
+          {{ this.username }}</span>
           <i class="el-icon-arrow-down"/>
         </span>
         <el-dropdown-menu slot="dropdown">
@@ -49,21 +51,21 @@
                         active-text-color	当前激活菜单的文字颜色（仅支持 hex 格式）
           -->
           <!-- 一级菜单 -->
-          <el-submenu :index="'/'+item.path" v-for="item in menuList" :key="item.id">
+          <el-submenu :index="'/'+menu.path" v-for="menu in menuList" :key="menu.id">
             <!-- 一级菜单的模板区 -->
             <template slot="title">
               <!-- 图标 -->
-              <i :class="iconsObj[item.id]"></i>
+              <i :class="menu.icon"></i>
               <!-- 文本 -->
-              <span>{{ item.authName }}</span>
+              <span>{{ menu.title }}</span>
             </template>
             <!-- 二级菜单 -->
-            <el-menu-item :index="'/'+ item2.path" v-for="item2 in item.children" :key="item2.id">
+            <el-menu-item :index="submenu.path" v-for="submenu in menu.children" :key="submenu.id">
               <template slot="title">
                 <!-- 图标 -->
-                <i :class="iconsObj[item2.id]"></i>
+                <i :class="submenu.icon"></i>
                 <!-- 文本 -->
-                <span>{{ item2.authName }}</span>
+                <span>{{ submenu.title }}</span>
               </template>
             </el-menu-item>
           </el-submenu>
@@ -89,7 +91,6 @@ export default {
       username: null,
       userInfo: null,
       // 左侧菜单数据
-      menuDict: {},
       menuList: [
         {
           "id": 101,
@@ -199,6 +200,7 @@ export default {
   created() {
     this.uid = sessionStorage.getItem('uid')
     this.username = sessionStorage.getItem('username')
+    console.log(sessionStorage.getItem('access'))
     this.getMenuDict()
   },
   methods: {
@@ -208,6 +210,18 @@ export default {
     },
     // 获取所有菜单
     async getMenuDict() {
+      this.$axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/api/rbac/user/get_menu_button/',
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('access')}`
+        }
+      }).then(res => {
+        console.log(res.data)
+        console.log(res.data['data']['menu_list'])
+        this.menuList = this.$utils.toArrayTree(res.data['data']['menu_list'])
+        console.log(this.menuList)
+      })
     },
     getUserInfo() {
       this.$router.push(`${this.uid}`)

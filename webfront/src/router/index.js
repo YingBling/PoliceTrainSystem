@@ -41,14 +41,14 @@ const router = new Router({
           }
         },
         {
-          path: '/:id(\\d+)',
+          path: '/users/:id(\\d+)',
           component: info,
           meta: {
             title: '个人中心'
           }
         },
         {
-          path: '/users',
+          path: '/users/',
           component: users,
           meta: {
             title: '用户管理'

@@ -28,6 +28,13 @@ class CustomPageNumberPagination(PageNumberPagination):
     max_page_size = 20
 
 
+class MenuViewSet(ModelViewSet):
+    authentication_classes = []
+    permission_classes = []
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer
+
+
 class UserAPIView(APIView):
     '''
     用户视图
@@ -139,14 +146,50 @@ class ImportUser(APIView):
         return APIResponse(code=200, msg='导入用户数据成功')
 
 
+def list_to_tree(data_list, root, root_field, node_field):
+    # 遍历列表，如果列表的parent_id等于主节点
+    resp_list = [i for i in data_list if i.get(root_field) == root]
+    # 2次遍历列表， 第一次遍历的列表拿到的 oid 等于 第二次的 parent_id
+    for i in data_list:
+        i['children'] = [j for j in data_list if i.get(node_field) == j.get(root_field)]
+    return resp_list
+
+
 class UserViewSet(ModelViewSet):
-    queryset = User.objects.all().all()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
-    authentication_classes = [IsAuthenticated]  # 认证类
+    # authentication_classes = []  # 认证类
     permission_classes = []  # 权限类
     pagination_class = CustomPageNumberPagination  # 分页器
-    filter_fields = ['name', 'dept', 'roles', 'post']  # 过滤器
+    filter_fields = ['name', 'dept', 'role', 'post']  # 过滤器
     ordering_fields = ['id', 'dept']  # 排序
+
+    @action(methods=['GET'], detail=False)
+    def get_menu_button(self, request, *args, **kwargs):
+        """
+        1.获取登录用户
+        2.获取用户的所有角色
+        3.获取角色的菜单，按钮
+        4.返回树形菜单
+        """
+        user = request.user
+        roles = user.role.all()
+        if roles.count() == 0:
+            raise Exception('当前用户未分配角色')
+        menu_list = Menu.objects.none()
+        button_list = MenuButton.objects.none()
+
+        for role in roles:
+            menu_list = menu_list | role.menus.all()
+            button_list = button_list | role.permissions.all()
+        menu_list = menu_list.distinct()
+        button_list = button_list.distinct()
+        menu_ser = MenuSerializer(menu_list, many=True)
+        button_ser = MenuButtonSerializer(button_list, many=True)
+        return APIResponse(data={
+            'menu_list': menu_ser.data,
+            'button_list': button_ser.data
+        })
 
 
 class DeptViewSet(ModelViewSet):
@@ -180,11 +223,6 @@ class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
     authentication_classes = []
     permission_classes = []
-
-
-class PermissionViewSet(ModelViewSet):
-    queryset = Permission.objects.all()
-    serializer_class = PermissionSerializer
 
 
 class RoleViewSet(ModelViewSet):

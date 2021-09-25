@@ -16,20 +16,41 @@ from rest_framework.serializers import (ModelSerializer, SerializerMethodField,
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from rbac.models import Permission, User, Role, Dept, Post
+from rbac.models import User, Role, Dept, Post, Menu, MenuButton, Button
 from django.contrib.auth.hashers import make_password
 
 
-class PermissionSerializer(ModelSerializer):
-    """
-    权限序列化器
-    """
+# class PermissionSerializer(ModelSerializer):
+#     """
+#     权限序列化器
+#     """
+#
+#     class Meta:
+#         model = Permission
+#         fields = '__all__'  # 设置序列化字段为所有['title','url']
+#         # read_only_fields = []  # 设置只读字段
+#         # extra_kwargs = {}  # 设置每个字段的属性字典，如果字段被显示声明的话，该字典里面的内容将会被忽略
+class ButtonSerializer(ModelSerializer):
+    class Meta:
+        model = Button
+        fields = '__all__'
+
+
+class MenuSerializer(ModelSerializer):
+    parentId = PrimaryKeyRelatedField(source='parent',
+                                      label='上级菜单', read_only=True)
+    # parent = PrimaryKeyRelatedField(source='parent', write_only=True)
 
     class Meta:
-        model = Permission
-        fields = '__all__'  # 设置序列化字段为所有['title','url']
-        # read_only_fields = []  # 设置只读字段
-        # extra_kwargs = {}  # 设置每个字段的属性字典，如果字段被显示声明的话，该字典里面的内容将会被忽略
+        model = Menu
+        # fields = '__all__'
+        exclude = ['parent']
+
+
+class MenuButtonSerializer(ModelSerializer):
+    class Meta:
+        model = MenuButton
+        fields = '__all__'
 
 
 class PostSerializer(ModelSerializer):
@@ -60,7 +81,6 @@ class RoleSerializer(ModelSerializer):
     """
     Role序列化器
     """
-    permissions = PermissionSerializer(many=True)
 
     class Meta:
         model = Role
@@ -89,7 +109,7 @@ class UserSerializer(ModelSerializer):
     # required=True为反序列化必填
     dept_name = serializers.CharField(source='dept.title', read_only=True)
     post_name = serializers.CharField(source='post.title', read_only=True)
-    roles_list = StringRelatedField(source='roles', many=True, read_only=True)
+    role_list = StringRelatedField(source='role', many=True, read_only=True)
 
     # create_time = serializers.DateTimeField(read_only=True)
 
@@ -102,34 +122,11 @@ class UserSerializer(ModelSerializer):
 
         # fields:序列化的字段
         fields = ['id', 'username', 'name', 'dept_name', 'post_name',
-                  'roles_list', 'password', 'create_time', 'is_active', 'avatar']
+                  'role_list', 'password', 'create_time', 'is_active', 'avatar']
         # read_only_fields = ['dept', 'post', 'roles']
         extra_kwargs = {'password': {'write_only': True,
                                      'required': False},
                         'create_time': {'read_only': True}}
-        # depth = 0
-
-    # 获取用户所有权限
-    def get_user_permissions(self, instance):
-        # 获取用户所有的角色
-        roles = instance.roles.all()
-        # 权限集合
-        permissions = Permission.objects.none()
-        for role in roles:
-            # 查询该角色下的所有权限
-            permission = role.permissions.all()
-            permissions = permissions | permission
-        permissions = permissions.distinct()
-        # 返回用户的权限序列化JSON
-        return PermissionSerializer(permissions, many=True).data
-
-    def get_roles_list(self, instance):
-        roles = instance.roles.all()
-        roles_list = Role.objects.none()
-        for role in roles:
-            roles_list = roles_list | role
-        roles_list = roles_list.distinct()
-        return RoleSerializer(roles_list, many=True).data
 
     def validate_password(self, data):
         # 密码长度大于6位
