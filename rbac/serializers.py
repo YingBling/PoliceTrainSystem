@@ -39,6 +39,7 @@ class ButtonSerializer(ModelSerializer):
 class MenuSerializer(ModelSerializer):
     parentId = PrimaryKeyRelatedField(source='parent',
                                       label='上级菜单', read_only=True)
+
     # parent = PrimaryKeyRelatedField(source='parent', write_only=True)
 
     class Meta:
@@ -109,6 +110,7 @@ class UserSerializer(ModelSerializer):
     # required=True为反序列化必填
     dept_name = serializers.CharField(source='dept.title', read_only=True)
     post_name = serializers.CharField(source='post.title', read_only=True)
+    create_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', read_only=True)
     role_list = StringRelatedField(source='role', many=True, read_only=True)
 
     # create_time = serializers.DateTimeField(read_only=True)
@@ -122,6 +124,7 @@ class UserSerializer(ModelSerializer):
 
         # fields:序列化的字段
         fields = ['id', 'username', 'name', 'dept_name', 'post_name',
+                  'gender',
                   'role_list', 'password', 'create_time', 'is_active', 'avatar']
         # read_only_fields = ['dept', 'post', 'roles']
         extra_kwargs = {'password': {'write_only': True,

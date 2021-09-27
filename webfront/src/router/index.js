@@ -23,7 +23,7 @@ const router = new Router({
       name: 'login',
       component: login,
       meta: {
-        title: '登录'
+        title: '用户登录'
       }
     },
 // 进入index页面，由于重定向redirect到welcome页面（先展示index组件，由于重定向，会在index页面占位符的位置上显示welcome组件）
@@ -41,14 +41,14 @@ const router = new Router({
           }
         },
         {
-          path: '/users/:id(\\d+)',
+          path: '/system/users/:id(\\d+)',
           component: info,
           meta: {
             title: '个人中心'
           }
         },
         {
-          path: '/users/',
+          path: '/system/users/',
           component: users,
           meta: {
             title: '用户管理'

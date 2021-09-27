@@ -60,7 +60,7 @@
           </el-form>
           <!--增删改导入按钮-->
           <el-row :gutter="10" class="mb8">
-            <el-col :span="1.5">
+            <el-col :span="1.5" v-for="">
               <el-button
                 type="primary"
                 plain
@@ -70,49 +70,59 @@
               >新增
               </el-button>
             </el-col>
-            <el-col :span="1.5">
-              <el-button
-                type="success"
-                plain
-                icon="el-icon-edit"
-                size="mini"
-                @click="handleUpdate"
-              >修改
-              </el-button>
-            </el-col>
-            <el-col :span="1.5">
-              <el-button
-                type="danger"
-                plain
-                icon="el-icon-delete"
-                size="mini"
-                @click="handleDelete"
-              >删除
-              </el-button>
-            </el-col>
-            <el-col :span="1.5">
-              <el-button
-                type="info"
-                plain
-                icon="el-icon-upload2"
-                size="mini"
-                @click="handleImport"
-              >导入
-              </el-button>
-            </el-col>
-            <el-col :span="1.5">
-              <el-button
-                type="warning"
-                plain
-                icon="el-icon-download"
-                size="mini"
-                @click="handleExport"
-              >导出
-              </el-button>
-            </el-col>
+            <!--            <el-col :span="1.5">-->
+            <!--              <el-button-->
+            <!--                type="primary"-->
+            <!--                plain-->
+            <!--                icon="el-icon-plus"-->
+            <!--                size="mini"-->
+            <!--                @click="handleAdd"-->
+            <!--              >新增-->
+            <!--              </el-button>-->
+            <!--            </el-col>-->
+            <!--            <el-col :span="1.5">-->
+            <!--              <el-button-->
+            <!--                type="success"-->
+            <!--                plain-->
+            <!--                icon="el-icon-edit"-->
+            <!--                size="mini"-->
+            <!--                @click="handleUpdate"-->
+            <!--              >修改-->
+            <!--              </el-button>-->
+            <!--            </el-col>-->
+            <!--            <el-col :span="1.5">-->
+            <!--              <el-button-->
+            <!--                type="danger"-->
+            <!--                plain-->
+            <!--                icon="el-icon-delete"-->
+            <!--                size="mini"-->
+            <!--                @click="handleDelete"-->
+            <!--              >删除-->
+            <!--              </el-button>-->
+            <!--            </el-col>-->
+            <!--            <el-col :span="1.5">-->
+            <!--              <el-button-->
+            <!--                type="info"-->
+            <!--                plain-->
+            <!--                icon="el-icon-upload2"-->
+            <!--                size="mini"-->
+            <!--                @click="handleImport"-->
+            <!--              >导入-->
+            <!--              </el-button>-->
+            <!--            </el-col>-->
+            <!--            <el-col :span="1.5">-->
+            <!--              <el-button-->
+            <!--                type="warning"-->
+            <!--                plain-->
+            <!--                icon="el-icon-download"-->
+            <!--                size="mini"-->
+            <!--                @click="handleExport"-->
+            <!--              >导出-->
+            <!--              </el-button>-->
+            <!--            </el-col>-->
           </el-row>
           <!--用户列表区域-->
-          <el-table :data="userList" @selection-change="handleSelectionChange">
+          <el-table :data="userdata.results" @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="50" align="center"/>
             <el-table-column key="id" label="用户编号" align="center" prop="id"/>
             <el-table-column
@@ -124,12 +134,26 @@
                              prop="name"
                              :show-overflow-tooltip="true"
             />
-            <el-table-column key="name" label="角色"
+            <el-table-column key="gender" label="性别"
                              align="center"
-                             prop="1"
                              :show-overflow-tooltip="true"
+            >
+              <template slot-scope="scope">
+                <span v-if="scope.row.gender">男</span>
+                <span v-else>女</span>
+              </template>
+            </el-table-column>
+            <el-table-column key="role" label="角色"
+                             align="center"
+                             :show-overflow-tooltip='true'
+            >
+              <template slot-scope="scope">
+                <p v-for="item in scope.row.role_list">
+                  {{ item }}
+                </p>
+              </template>
 
-            />
+            </el-table-column>
             <el-table-column
               key="is_active" label="状态" align="center">
               <template slot-scope="scope">
@@ -185,12 +209,15 @@
           <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
-            :current-page="queryInfo.pagenum"
+            @next-click="handleNextClick"
+            @prev-click="handlePreClick"
+            :current-page="page_params.current"
             :page-sizes="[1,2,5,10]"
-            :page-size="queryInfo.pagesize"
+            :page-size="page_params.size"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="queryInfo.totalpage"
-          ></el-pagination>
+            :total="page_params.total"
+          >
+          </el-pagination>
         </el-col>
       </el-row>
     </el-card>
@@ -202,39 +229,79 @@ export default {
   name: "user",
   data() {
     return {
-      queryInfo: {
-        "totalpage": 5,
-        //当前页数
-        "pagenum": 4,
-        // 当前每页显示多少条数据
-        "pagesize": 2,
+      page_params: {
+        // 总页面数
+        "total": null,
+        // 当前所在页
+        "current": null,
+        // 页面大小
+        "size": 5,
       },
-      userList: [],
+      userdata: {}
     }
   },
   created() {
     this.get_all_users()
   },
   methods: {
-    handleSizeChange(newSize) {
-      this.queryInfo.pagesize = newSize
-    },
     async get_all_users() {
       this.$axios({
         method: 'get',
         url: 'http://127.0.0.1:8000/api/rbac/user/',
+        params: {
+          'size': this.page_params.size,
+          'page': this.page_params.current
+        },
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem('access')}`
         }
       })
         .then(res => {
-          this.userList = res.data['results']
-          console.log(res.data['results'])
+          this.userdata = res.data
+          this.page_params.total = this.userdata['count']
+        })
+    },
+    handleSizeChange(size) {
+      // 改变页面大小
+      this.page_params.size = size
+      this.get_all_users()
+    },
+    handleCurrentChange(current) {
+      // 改变页码
+      this.page_params.current = current
+      this.get_all_users()
+    },
+    handlePreClick() {
+      this.$axios({
+        method: 'get',
+        url: this.userdata['previous'],
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('access')}`
+        }
+      })
+        .then(res => {
+          this.userdata = res.data
+          console.log(this.userdata)
+          this.page_params.total = this.userdata['count']
+        })
+
+    },
+    handleNextClick() {
+      this.$axios({
+        method: 'get',
+        url: this.userdata['next'],
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('access')}`
+        }
+      })
+        .then(res => {
+          this.userdata = res.data
+          this.page_params.totalpage = this.userdata['count']
         })
     }
-  }
+  },
+
 }
-;
 </script>
 
 <style lang="scss" scoped>
