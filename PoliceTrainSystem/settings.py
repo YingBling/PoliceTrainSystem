@@ -50,7 +50,7 @@ AUTH_USER_MODEL = "rbac.User"
 
 # SimpleJWT配置项
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60*24),
     'USER_ID_FIELD': 'username',
     'USER_ID_CLAIM': 'username'
 }
