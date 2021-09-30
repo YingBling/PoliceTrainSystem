@@ -10,7 +10,6 @@ import datetime
 # age = 12
 # print(f"name is {name.lower()}, age is {age}.")
 # print(datetime.datetime.now())
+import os
 
-string = input('string:')
-m = input('m:')
-print(string)
+print(os.path.abspath('./'))

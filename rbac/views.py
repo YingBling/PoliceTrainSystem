@@ -146,15 +146,6 @@ class ImportUser(APIView):
         return APIResponse(code=200, msg='导入用户数据成功')
 
 
-# def list_to_tree(data_list, root, root_field, node_field):
-#     # 遍历列表，如果列表的parent_id等于主节点
-#     resp_list = [i for i in data_list if i.get(root_field) == root]
-#     # 2次遍历列表， 第一次遍历的列表拿到的 oid 等于 第二次的 parent_id
-#     for i in data_list:
-#         i['children'] = [j for j in data_list if i.get(node_field) == j.get(root_field)]
-#     return resp_list
-
-
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer

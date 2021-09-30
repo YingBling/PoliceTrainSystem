@@ -8,8 +8,10 @@
       <el-breadcrumb-item>用户列表</el-breadcrumb-item>
     </el-breadcrumb>
     <!--  卡片视图区域-->
+    <span>{{ this.$route.query.name }}</span>
     <el-card>
       <el-row :gutter="20">
+
         <!-- 搜索框 -->
         <el-col :span="36" :xs="24">
           <el-form :inline="true" label-width="68px">
@@ -22,7 +24,7 @@
                 @keyup.enter.native="handleQuery"
               />
             </el-form-item>
-            <el-form-item label="姓名" prop="username">
+            <el-form-item label="姓名">
               <el-input
                 placeholder="请输入姓名"
                 clearable
@@ -122,9 +124,9 @@
             <!--            </el-col>-->
           </el-row>
           <!--用户列表区域-->
-          <el-table :data="userdata.results" @selection-change="handleSelectionChange">
+          <el-table :data="userdata.results" @selection-change="handleSelectionChange" height="400" style="width: 100%">
             <el-table-column type="selection" width="50" align="center"/>
-            <el-table-column key="id" label="用户编号" align="center" prop="id"/>
+            <el-table-column sortable key="id" label="用户编号" align="center" prop="id"/>
             <el-table-column
               key="username" label="用户账号" align="center" prop="username"
               :show-overflow-tooltip="true"
@@ -202,24 +204,28 @@
                 </el-tooltip>
               </template>
             </el-table-column>
+
+
           </el-table>
 
 
           <!-- 分页区域 -->
           <el-pagination
+            style="position: center"
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             @next-click="handleNextClick"
             @prev-click="handlePreClick"
-            :current-page="page_params.current"
+            :current-page="query_params.page.current"
             :page-sizes="[1,2,5,10]"
-            :page-size="page_params.size"
+            :page-size="query_params.page.size"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="page_params.total"
+            :total="query_params.page.total"
           >
           </el-pagination>
         </el-col>
       </el-row>
+
     </el-card>
   </div>
 </template>
@@ -229,13 +235,17 @@ export default {
   name: "user",
   data() {
     return {
-      page_params: {
+      query_params: {
         // 总页面数
-        "total": null,
-        // 当前所在页
-        "current": null,
-        // 页面大小
-        "size": 5,
+        page: {
+          "total": null,
+          // 当前所在页
+          "current": null,
+          // 页面大小
+          "size": 5,
+        },
+        ordering: 'id',
+        name: null
       },
       userdata: {}
     }
@@ -244,13 +254,15 @@ export default {
     this.get_all_users()
   },
   methods: {
-    async get_all_users() {
+    get_all_users() {
       this.$axios({
         method: 'get',
         url: 'http://127.0.0.1:8000/api/rbac/user/',
         params: {
-          'size': this.page_params.size,
-          'page': this.page_params.current
+          'size': this.query_params.page.size,
+          'page': this.query_params.page.current,
+          'ordering': this.query_params.ordering,
+          'name': this.query_params.name
         },
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem('access')}`
@@ -258,17 +270,19 @@ export default {
       })
         .then(res => {
           this.userdata = res.data
-          this.page_params.total = this.userdata['count']
+          this.query_params.page.total = this.userdata['count']
         })
+    },
+    handleQuery() {
     },
     handleSizeChange(size) {
       // 改变页面大小
-      this.page_params.size = size
+      this.query_params.page.size = size
       this.get_all_users()
     },
     handleCurrentChange(current) {
       // 改变页码
-      this.page_params.current = current
+      this.query_params.page.current = current
       this.get_all_users()
     },
     handlePreClick() {
@@ -282,7 +296,7 @@ export default {
         .then(res => {
           this.userdata = res.data
           console.log(this.userdata)
-          this.page_params.total = this.userdata['count']
+          this.query_params.page.total = this.userdata['count']
         })
 
     },
@@ -296,11 +310,10 @@ export default {
       })
         .then(res => {
           this.userdata = res.data
-          this.page_params.totalpage = this.userdata['count']
+          this.query_params.page.total = this.userdata['count']
         })
     }
   },
-
 }
 </script>
 

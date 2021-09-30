@@ -76,7 +76,6 @@ class ResetPasswordView(APIView):
     permission_classes = []
 
     def post(self, request):
-        print(111111)
         resp = {
             'code': 200
         }

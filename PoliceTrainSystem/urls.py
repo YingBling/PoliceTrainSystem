@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('user/', include('user.urls')),  # user下的路由交给user.urls处理
     re_path('^api/rbac/', include('rbac.urls', namespace='rbac')),
+    re_path('^api/lesson/', include('apps.lesson.urls', )),
     re_path('^api/login/$', LoginView.as_view()),
     re_path('^api/reset-password/$', ResetPasswordView.as_view()),
     re_path('^api/refresh/$', token_refresh)
