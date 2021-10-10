@@ -33,7 +33,7 @@ export default {
           "id": 1,
           "ChapterID": "test1",
           "ChapterName": "big_buck_bunny",
-          "ChapterFile": "http://127.0.0.1:8000/media/lesson/20211009/big_buck_bunny_uX3xw0x.mp4",
+          "ChapterFile": "http://127.0.0.1:8000/media/lesson/20211009/big_buck_bunny.mp4",
           "lessons": [],
           "learners": []
         },
