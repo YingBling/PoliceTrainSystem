@@ -15,17 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.views.static import serve
 from rest_framework_simplejwt.views import token_refresh
 
+from . import settings
 from rbac.utils import LoginView, ResetPasswordView
-from rbac.views import UserAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('user/', include('user.urls')),  # user下的路由交给user.urls处理
     re_path('^api/rbac/', include('rbac.urls', namespace='rbac')),
-    re_path('^api/lesson/', include('apps.lesson.urls', )),
+    re_path('^api/lesson/', include('apps.lesson.urls')),
     re_path('^api/login/$', LoginView.as_view()),
     re_path('^api/reset-password/$', ResetPasswordView.as_view()),
-    re_path('^api/refresh/$', token_refresh)
+    re_path('^api/refresh/$', token_refresh),
+    # 获取资源
+    re_path(r'media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
 ]

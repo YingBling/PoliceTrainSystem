@@ -4,10 +4,10 @@
 # @Email: yangyu.cs@outlook.com
 # @File : urls.py
 # @Software: PyCharm
-from django.urls import path, re_path
+from django.urls import re_path
 from rest_framework import routers
 
-from . import views, utils
+from . import views
 
 # 自动注册路由
 router = routers.SimpleRouter()

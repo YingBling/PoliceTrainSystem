@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-9&+l_x1w9!)6gn%kl-gzgt(e3za!fctxo!2jfmvorv1na5pit9
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+# 媒体文件存放路径
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 # Application definition
 # 需要在这里添加应用，注册APP
 INSTALLED_APPS = [
@@ -50,7 +52,7 @@ AUTH_USER_MODEL = "rbac.User"
 
 # SimpleJWT配置项
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60*24),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60 * 24),
     'USER_ID_FIELD': 'username',
     'USER_ID_CLAIM': 'username'
 }

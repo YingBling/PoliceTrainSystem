@@ -1,21 +1,16 @@
 from django.db import transaction
-from django.shortcuts import render
 
 # Create your views here
+
 from rest_framework.decorators import action
-from rest_framework.generics import ListAPIView
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from utils.response import APIResponse
-from utils.views import CustomModelViewSet
-from .models import *
 from .serializers import *
 from rest_framework.views import APIView
 import xlrd
-import openpyxl
 
 
 class CustomPageNumberPagination(PageNumberPagination):

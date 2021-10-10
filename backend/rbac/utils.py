@@ -5,17 +5,14 @@
 # @File : utils.py.py
 # @Software: PyCharm
 
-from django.contrib.auth.hashers import make_password
 from django.utils import timezone
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.views import token_obtain_pair, TokenObtainPairView, TokenRefreshView
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from utils.response import APIResponse
 from .models import User
-from .serializers import UserSerializer
 
 
 class LoginSerializer(TokenObtainPairSerializer):

@@ -4,32 +4,15 @@
 # @Email: yangyu.cs@outlook.com
 # @File : serializers.py
 # @Software: PyCharm
-from django.db.migrations import serializer
-from django.db.models import QuerySet
 # from rest_framework.fields import CharField
 from rest_framework import serializers
-from rest_framework.fields import CharField
-from rest_framework.serializers import (ModelSerializer, SerializerMethodField,
-                                        PrimaryKeyRelatedField,
+from rest_framework.serializers import (ModelSerializer, PrimaryKeyRelatedField,
                                         StringRelatedField, ListSerializer
                                         )
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.tokens import RefreshToken
-
 from rbac.models import User, Role, Dept, Post, Menu, MenuButton, Button
 from django.contrib.auth.hashers import make_password
 
 
-# class PermissionSerializer(ModelSerializer):
-#     """
-#     权限序列化器
-#     """
-#
-#     class Meta:
-#         model = Permission
-#         fields = '__all__'  # 设置序列化字段为所有['title','url']
-#         # read_only_fields = []  # 设置只读字段
-#         # extra_kwargs = {}  # 设置每个字段的属性字典，如果字段被显示声明的话，该字典里面的内容将会被忽略
 class ButtonSerializer(ModelSerializer):
     class Meta:
         model = Button

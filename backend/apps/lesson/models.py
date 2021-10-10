@@ -15,7 +15,8 @@ class Chapter(models.Model):
     """
     ChapterID = models.CharField(unique=True, max_length=255, verbose_name='章节编号')
     ChapterName = models.CharField(max_length=255, verbose_name='章节名称', null=True, blank=True)
-    ChapterURL = models.CharField(verbose_name='章节存放地址', max_length=255, null=True, blank=True)
+    ChapterFile = models.FileField(upload_to='lesson/%Y%m%d/', verbose_name='章节视频', null=True, blank=True)
+    # ChapterURL = models.CharField(verbose_name='章节存放地址', max_length=255, null=True, blank=True)
     lessons = models.ManyToManyField('lesson.Lesson', related_name='chapters',
                                      through='lesson.ChapterLesson',
                                      through_fields=('chapter', 'lesson'),
@@ -81,7 +82,7 @@ class Lesson(models.Model):
     LessonName = models.CharField(max_length=255, verbose_name='课程名称')
     detail = models.CharField(verbose_name='描述信息', max_length=255, blank=True, null=True)
     learners = models.ManyToManyField('rbac.User', related_name='lessons',
-                                      through='lesson.LearnerLesson',
+                                      through='LearnerLesson',
                                       through_fields=('lesson', 'learner'))
 
     class Meta:
@@ -100,7 +101,7 @@ class LearnerLesson(models.Model):
     status：学习状态，是否完成课程的学习，完成全部的章节时为True
     """
     learner = models.ForeignKey('rbac.User', on_delete=models.CASCADE)
-    lesson = models.ForeignKey('lesson.Lesson', on_delete=models.CASCADE)
+    lesson = models.ForeignKey('Lesson', on_delete=models.CASCADE)
     status = models.BooleanField(verbose_name="学习状态", default=False, null=True, blank=True)
 
     class Meta:
