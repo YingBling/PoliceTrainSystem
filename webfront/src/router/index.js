@@ -7,6 +7,8 @@ import layout from '../views/layout/layout'
 import welcome from '../components/Welcome'
 import users from '../components/users'
 import info from '../components/Info'
+import video from '../components/videoPlayer'
+import collapse from '../components/Collapse'
 
 Vue.use(Router)
 // Router实例
@@ -53,6 +55,13 @@ const router = new Router({
           meta: {
             title: '用户管理'
           }
+        },
+        {
+          path: '/lesson/study',
+          component: collapse,
+          meta: {
+            title: '课程学习'
+          }
         }
       ]
     },
@@ -61,6 +70,16 @@ const router = new Router({
       name: 'layout',
       component: layout
     },
+    {
+      path: '/video',
+      name: 'videoPlayer',
+      component: video
+    },
+    {
+      path: '/collapse',
+      name: 'collapse',
+      component: collapse
+    }
   ]
 })
 

@@ -51,7 +51,9 @@
                         active-text-color	当前激活菜单的文字颜色（仅支持 hex 格式）
           -->
           <!-- 一级菜单 -->
-          <el-submenu :index="'/'+menu.path" v-for="menu in menuList" :key="menu.id">
+          <el-submenu :index="'/'+menu.path"
+                      v-for="menu in menuList"
+                      :key="menu.id">
             <!-- 一级菜单的模板区 -->
             <template slot="title">
               <!-- 图标 -->

@@ -9,10 +9,15 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 import axios from 'axios'
-import Router from "vue-router";
-import VXEUtils from "vxe-utils";
-import XEUtils from "xe-utils";
+import Router from "vue-router"
+import VXEUtils from "vxe-utils"
+import XEUtils from "xe-utils"
+import VideoPlayer from 'vue-video-player'
 
+require('vue-video-player/src/custom-theme.css')
+require('video.js/dist/video-js.css')
+
+Vue.use(VideoPlayer)
 Vue.use(ElementUI)
 Vue.use(VueResource)
 Vue.use(Router)
@@ -24,7 +29,6 @@ Vue.prototype.$axios = axios // 全局注册，使用方法为:this.$axios
 
 router.beforeEach((to, from, next) => {
   window.document.title = to.meta.title == undefined ? '执法训练管理平台' : to.meta.title
-
   next();
 })
 new Vue({
