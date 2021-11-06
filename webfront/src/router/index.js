@@ -7,8 +7,11 @@ import layout from '../views/layout/layout'
 import welcome from '../components/Welcome'
 import users from '../components/users'
 import info from '../components/Info'
-import video from '../components/videoPlayer'
-import collapse from '../components/Collapse'
+import video from '../components/lesson/videoPlayer'
+import collapse from '../components/lesson/Collapse'
+import catalog from "../components/lesson/catalog";
+import study from "../components/lesson/study";
+import lessonCard from "../components/lesson/lessonCard";
 
 Vue.use(Router)
 // Router实例
@@ -18,6 +21,10 @@ const router = new Router({
     {
       path: '/',
       redirect: '/login'
+    },
+    {
+      path: '/lessoncard',
+      component: lessonCard
     },
     {
       // 路由与组件绑定
@@ -30,7 +37,7 @@ const router = new Router({
     },
 // 进入index页面，由于重定向redirect到welcome页面（先展示index组件，由于重定向，会在index页面占位符的位置上显示welcome组件）
     {
-      path: '/index',
+      path: '/welcome',
       name: 'index',
       component: Index,
       redirect: '/welcome',
@@ -79,6 +86,14 @@ const router = new Router({
       path: '/collapse',
       name: 'collapse',
       component: collapse
+    },
+    {
+      path: '/catalog',
+      component: catalog
+    },
+    {
+      path: '/study',
+      component: study
     }
   ]
 })

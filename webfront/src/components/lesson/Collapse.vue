@@ -1,29 +1,27 @@
 <template>
-  <el-scrollbar
-    wrapClass="scrollbar-wrap"
-    :style="{height: scrollHeight}"
-    ref="scrollbarContainer">
+  <!--  <skeleton></skeleton>-->
+  <el-collapse v-model="activeNames" @change="handleChange">
 
-
-    <el-collapse v-model="activeNames" @change="handleChange">
-
-      <el-collapse-item v-for="item in chapterList" :title="item['ChapterName']"
-                        style="font-family:'Microsoft YaHei',serif;
+    <el-collapse-item v-for="item in chapterList" :title="item['ChapterName']"
+                      style="font-family:'Microsoft YaHei',serif;
                         font-size: large;
                         font-weight: bold;">
-        <player v-bind:movie_src="item.ChapterFile"></player>
-      </el-collapse-item>
+      <player v-bind:movie_src="item.ChapterFile"></player>
+    </el-collapse-item>
 
-    </el-collapse>
-  </el-scrollbar>
+  </el-collapse>
+
 </template>
 
 <script>
-import player from '../components/videoPlayer'
+// 引入组件
+import player from "./videoPlayer"
+import skeleton from "../skeleton"
 
 export default {
   name: "Collapse",
   components: {
+    skeleton,
     player
   },
   data() {

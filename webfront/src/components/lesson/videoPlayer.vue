@@ -3,7 +3,7 @@
   <video-player class="video-player vjs-custom-skin"
                 ref="videoPlayer"
                 :playsinline="true"
-                :options="playerOptions"
+                v-bind:options="playerOptions"
   >
   </video-player>
 </template>
@@ -14,6 +14,7 @@ export default {
   props: ['movie_src'],
   data() {
     return {
+      movie: {},
       playerOptions: {
         playbackRates: [0.5, 1.0, 1.5, 2.0], // 可选的播放速度
         autoplay: false, // 如果为true,浏览器准备好时开始回放。
@@ -44,6 +45,16 @@ export default {
   mounted() {
   },
   created() {
+    this.movie = {
+      "id": 1,
+      "ChapterID": "test1",
+      "ChapterName": "big_buck_bunny",
+      "ChapterFile": "http://127.0.0.1:8000/media/lesson/20211009/big_buck_bunny.mp4",
+      "lessons": [],
+      "learners": []
+    }
+    // console.log(this.movie)
+    this.playerOptions.sources[0].src = this.movie.ChapterFile
   }
 }
 </script>
@@ -66,5 +77,15 @@ export default {
 
 .demo:hover {
   display: block;
+}
+
+.player {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  display: none;
 }
 </style>
