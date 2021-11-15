@@ -45,7 +45,7 @@ class Menu(models.Model):
 
     """
     # 菜单是个树形结构。
-    parentid = models.ForeignKey(to='rbac.Menu', verbose_name='父级菜单',
+    parent = models.ForeignKey(to='rbac.Menu', verbose_name='父级菜单',
                                  db_constraint=False, on_delete=models.CASCADE, null=True, blank=True)
     # meta.title & meta.icon
     title = models.CharField(verbose_name='菜单名称', max_length=128, unique=True)

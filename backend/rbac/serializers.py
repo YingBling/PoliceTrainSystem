@@ -137,7 +137,7 @@ class MenuTreeSerializer(serializers.Serializer):
         "path": "/permission",
         "component": "Layout",
         "meta": {
-            "title": "权限管理",
+            "title": "permission",
             "icon": "el-icon-lock"
         },
         "name": "permission",
@@ -150,7 +150,7 @@ class MenuTreeSerializer(serializers.Serializer):
                 "name": "users",
                 "component": "permission/user",
                 "meta": {
-                    "title": "用户列表",
+                    "title": "users",
                     "icon": "el-icon-user"
                 },
                 "hidden": false
@@ -158,23 +158,32 @@ class MenuTreeSerializer(serializers.Serializer):
         ]
         }]
     """
-    path = serializers.CharField(source='Menu.path', max_length=128, allow_null=True, allow_blank=True)
-    name = serializers.CharField(source='Menu.name', max_length=128, allow_null=True, allow_blank=True)
-    component = serializers.CharField(source='Menu.component', max_length=128, allow_null=True, allow_blank=True)
+    path = serializers.CharField(max_length=128, allow_null=True, allow_blank=True)
+    name = serializers.CharField(max_length=128, allow_null=True, allow_blank=True)
+    component = serializers.CharField(max_length=128, allow_null=True, allow_blank=True)
     meta = serializers.SerializerMethodField()
-    redirect = serializers.CharField(source='Menu.redirect', max_length=128, allow_null=True, allow_blank=True)
-    alwaysShow = serializers.SerializerMethodField()
+    redirect = serializers.CharField(max_length=128, allow_null=True, allow_blank=True)
+    hidden = serializers.BooleanField()
     children = serializers.SerializerMethodField()
 
     def get_meta(self, instance):
-        return {instance.title, instance.icon}
+        return {
+            'title': instance.title, 'icon': instance.icon}
 
-    def get_alwaysShow(self, instance):
-        return instance.hidden == 1
+    # def get_alwaysShow(self, instance):
+    #     return instance.hidden == 1
 
     def get_children(self, instance):
-        # children列表
+        # menus:用户所有的菜单
         menus = self.context['menus']
+        # children列表
         children = []
-        # for
+        for m in menus:
+            if m.parent == None:
+                continue
+            if m.parent.id == instance.id:
+                item = MenuTreeSerializer(m, context={'menus': menus})
+                children.append(item.data)
+            else:
+                continue
         return children
