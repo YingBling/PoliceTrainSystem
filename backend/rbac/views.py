@@ -150,6 +150,15 @@ class UserViewSet(ModelViewSet):
     filter_fields = ['name', 'dept', 'role', 'post']  # 过滤器
     ordering_fields = ['id', 'dept']  # 排序
 
+    def get_user_info(self, request):
+        """
+        获取用户的用户名，id，头像等等
+        """
+        user = request.user
+        roles = user.role.all()
+        serializer = UserInfoSerializer(user)
+        return APIResponse(data=serializer.data)
+
     @action(methods=['GET'], detail=False)
     def get_menu_button(self, request, *args, **kwargs):
         """
