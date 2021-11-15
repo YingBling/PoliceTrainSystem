@@ -15,34 +15,15 @@
         <!-- 搜索框 -->
         <el-col :span="36" :xs="24">
           <el-form :inline="true" label-width="68px">
-            <el-form-item label="账号" prop="userid">
+            <el-form-item prop="userid">
               <el-input
-                placeholder="请输入账号"
+                placeholder="查询关键字"
                 clearable
+                v-model="keyword"
                 size="small"
                 style="width: 240px"
                 @keyup.enter.native="handleQuery"
               />
-            </el-form-item>
-            <el-form-item label="姓名">
-              <el-input
-                placeholder="请输入姓名"
-                clearable
-                size="small"
-                style="width: 240px"
-                @keyup.enter.native="handleQuery"
-              />
-            </el-form-item>
-            <el-form-item label="部门" prop="dept">
-              <el-select
-                placeholder="请选择"
-                clearable
-                size="small"
-                style="width: 240px"
-              >
-                <el-option label="企划"></el-option>
-                <el-option label="人力"></el-option>
-              </el-select>
             </el-form-item>
             <el-form-item label="状态" prop="is_active">
               <el-select
@@ -62,7 +43,7 @@
           </el-form>
           <!--增删改导入按钮-->
           <el-row :gutter="10" class="mb8">
-            <el-col :span="1.5" v-for="">
+            <el-col :span="1.5">
               <el-button
                 type="primary"
                 plain
@@ -72,59 +53,9 @@
               >新增
               </el-button>
             </el-col>
-            <!--            <el-col :span="1.5">-->
-            <!--              <el-button-->
-            <!--                type="primary"-->
-            <!--                plain-->
-            <!--                icon="el-icon-plus"-->
-            <!--                size="mini"-->
-            <!--                @click="handleAdd"-->
-            <!--              >新增-->
-            <!--              </el-button>-->
-            <!--            </el-col>-->
-            <!--            <el-col :span="1.5">-->
-            <!--              <el-button-->
-            <!--                type="success"-->
-            <!--                plain-->
-            <!--                icon="el-icon-edit"-->
-            <!--                size="mini"-->
-            <!--                @click="handleUpdate"-->
-            <!--              >修改-->
-            <!--              </el-button>-->
-            <!--            </el-col>-->
-            <!--            <el-col :span="1.5">-->
-            <!--              <el-button-->
-            <!--                type="danger"-->
-            <!--                plain-->
-            <!--                icon="el-icon-delete"-->
-            <!--                size="mini"-->
-            <!--                @click="handleDelete"-->
-            <!--              >删除-->
-            <!--              </el-button>-->
-            <!--            </el-col>-->
-            <!--            <el-col :span="1.5">-->
-            <!--              <el-button-->
-            <!--                type="info"-->
-            <!--                plain-->
-            <!--                icon="el-icon-upload2"-->
-            <!--                size="mini"-->
-            <!--                @click="handleImport"-->
-            <!--              >导入-->
-            <!--              </el-button>-->
-            <!--            </el-col>-->
-            <!--            <el-col :span="1.5">-->
-            <!--              <el-button-->
-            <!--                type="warning"-->
-            <!--                plain-->
-            <!--                icon="el-icon-download"-->
-            <!--                size="mini"-->
-            <!--                @click="handleExport"-->
-            <!--              >导出-->
-            <!--              </el-button>-->
-            <!--            </el-col>-->
           </el-row>
           <!--用户列表区域-->
-          <el-table :data="userdata.results" @selection-change="handleSelectionChange" height="400" style="width: 100%">
+          <el-table :data="filter_data" @selection-change="handleSelectionChange" height="400" style="width: 100%">
             <el-table-column type="selection" width="50" align="center"/>
             <el-table-column sortable key="id" label="用户编号" align="center" prop="id"/>
             <el-table-column
@@ -235,6 +166,7 @@ export default {
   name: "user",
   data() {
     return {
+      keyword: '',
       query_params: {
         // 总页面数
         page: {
@@ -247,7 +179,23 @@ export default {
         ordering: 'id',
         name: null
       },
-      userdata: {}
+      userdata: [],
+      filter_data:[]
+    }
+  },
+  watch: {
+    // userdata: {
+    //   handler(val) {
+    //     this.filter_data = this.userdata.results
+    //   }
+    // },
+    keyword: {
+      immediate: true,
+      handler(val) {
+        this.filter_data = this.userdata.results.filter((p) => {
+          return p.name.indexOf(val) !== -1
+        })
+      }
     }
   },
   created() {

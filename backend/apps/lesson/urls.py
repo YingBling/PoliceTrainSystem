@@ -10,6 +10,11 @@ from .views import *
 
 router = SimpleRouter()
 router.register('chapter', chapterViewSet)
+router.register('lesson', lessonViewSet)
+router.register('learner_lesson', learnerLessonViewSet)
 urlpatterns = [
+    re_path('lesson/get_user_lessons/', lessonViewSet.as_view({'get': 'get_user_lessons'})),
+    re_path('lesson/get_chapterByLesson/',lessonViewSet.as_view({'get':'get_chapterByLesson'})),
+    re_path('lesson/get_brief/',lessonViewSet.as_view({'get':'get_briefByLesson'}))
 ]
 urlpatterns += router.urls
