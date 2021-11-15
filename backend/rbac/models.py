@@ -127,6 +127,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+    objects = UserManager()
     username = models.CharField(verbose_name="用户名", max_length=30, unique=True)
     name = models.CharField(verbose_name='用户姓名', max_length=128, blank=True, null=True)
     email = models.CharField(verbose_name='邮件地址', max_length=100, blank=True, null=True)
@@ -142,7 +143,7 @@ class User(AbstractBaseUser):
     dept = models.ForeignKey('rbac.Dept', verbose_name="所属部门", on_delete=models.SET_NULL, blank=True, null=True)
     role = models.ManyToManyField('rbac.Role', verbose_name="关联角色", db_constraint=False)
     post = models.ForeignKey('rbac.Post', verbose_name="所属岗位", on_delete=models.SET_NULL, blank=True, null=True)
-    objects = UserManager()
+
 
     USERNAME_FIELD = 'username'  # 用户标识符
 

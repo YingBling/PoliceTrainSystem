@@ -119,3 +119,11 @@ class UserSerializer(ModelSerializer):
         if len(data) >= 6:
             # 将密码通过sha256加密后存到数据库中
             return make_password(data)
+
+
+class UserInfoSerializer(ModelSerializer):
+    roles = StringRelatedField(source='role', many=True, read_only=True)
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'name',
+                  'roles', 'avatar', 'dept', 'post']

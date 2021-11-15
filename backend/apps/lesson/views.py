@@ -31,7 +31,7 @@ class lessonViewSet(ModelViewSet):
         lesson_id = request.query_params['id']
         lesson = Lesson.objects.get(id=lesson_id)
         chapters = lesson.chapters.all()
-        chapters_serializers = ChapterSerializer(chapters, many=True)
+        chapters_serializers = ChapterSerializer(chapters, many=True, context={"request": request})
         return Response(chapters_serializers.data)
 
     def get_briefByLesson(self, request):
