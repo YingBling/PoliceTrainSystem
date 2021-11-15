@@ -186,6 +186,20 @@ class UserViewSet(ModelViewSet):
             'button_list': button_ser.data
         })
 
+    def get_menus(self, request):
+        user = request.user
+        # 用户所有的角色
+        roles = user.role.all()
+        for role in roles:
+            menus = role.menus.all()
+            root_menus = Menu.objects.none()
+            for m in menus:
+                if m.parent == None:
+                    root_menus = root_menus | m
+            # print(root_menus)
+            serializer = MenuTreeSerializer(instance=root_menus, context={'menus': menus})
+            return Response(serializer.data)
+
 
 class DeptViewSet(ModelViewSet):
     queryset = Dept.objects.all()

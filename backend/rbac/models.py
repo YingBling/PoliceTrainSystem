@@ -17,11 +17,44 @@ class Button(models.Model):
 
 class Menu(models.Model):
     """
+    后端需要返回的response格式
+    [
+    {
+        "path": "/permission",
+        "component": "Layout",
+        "meta": {
+            "title": "权限管理",
+            "icon": "el-icon-lock"
+        },
+        "name": "permission",
+        "redirect": "/permission/users",
+        "alwaysShow": true,
+        "children": [
+            {
+                "path": "users",
+                "name": "users",
+                "component": "permission/user",
+                "meta": {
+                    "title": "用户列表",
+                    "icon": "el-icon-user"
+                },
+                "hidden": false
+            }
+        ]
+    }]
+
     """
+    # 菜单是个树形结构。
     parent = models.ForeignKey(to='rbac.Menu', verbose_name='父级菜单',
-                               db_constraint=False, on_delete=models.CASCADE, null=True, blank=True)
+                                 db_constraint=False, on_delete=models.CASCADE, null=True, blank=True)
+    # meta.title & meta.icon
     title = models.CharField(verbose_name='菜单名称', max_length=128, unique=True)
-    icon = models.CharField(verbose_name='菜单图标地址', max_length=128, null=True, blank=True)
+    name = models.CharField(verbose_name='名称', max_length=128, null=True, blank=True)
+    icon = models.CharField(verbose_name='ele-icon', max_length=128, null=True, blank=True)
+    component = models.CharField(verbose_name='组件地址', max_length=128, null=True, blank=True)
+    redirect = models.CharField(verbose_name='重定向地址', max_length=128, null=True, blank=True)
+    # orderBy排序项
+    hidden = models.BooleanField(verbose_name='是否隐藏菜单', default=False)
     sort = models.IntegerField(default=1, verbose_name="显示排序",
                                null=True, blank=True, help_text="显示排序")
     path = models.CharField(verbose_name='路由地址', null=True, blank=True, max_length=128)
@@ -143,7 +176,6 @@ class User(AbstractBaseUser):
     dept = models.ForeignKey('rbac.Dept', verbose_name="所属部门", on_delete=models.SET_NULL, blank=True, null=True)
     role = models.ManyToManyField('rbac.Role', verbose_name="关联角色", db_constraint=False)
     post = models.ForeignKey('rbac.Post', verbose_name="所属岗位", on_delete=models.SET_NULL, blank=True, null=True)
-
 
     USERNAME_FIELD = 'username'  # 用户标识符
 

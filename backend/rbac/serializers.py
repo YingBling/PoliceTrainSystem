@@ -123,7 +123,67 @@ class UserSerializer(ModelSerializer):
 
 class UserInfoSerializer(ModelSerializer):
     roles = StringRelatedField(source='role', many=True, read_only=True)
+
     class Meta:
         model = User
         fields = ['id', 'username', 'name',
                   'roles', 'avatar', 'dept', 'post']
+
+
+class MenuTreeSerializer(serializers.Serializer):
+    """
+    返回菜单树，
+    [{
+        "path": "/permission",
+        "component": "Layout",
+        "meta": {
+            "title": "permission",
+            "icon": "el-icon-lock"
+        },
+        "name": "permission",
+        "redirect": "/permission/users",
+        "alwaysShow": true,
+        children数组必须要是用户的目录列表
+        "children": [
+            {
+                "path": "users",
+                "name": "users",
+                "component": "permission/user",
+                "meta": {
+                    "title": "users",
+                    "icon": "el-icon-user"
+                },
+                "hidden": false
+            }
+        ]
+        }]
+    """
+    path = serializers.CharField(max_length=128, allow_null=True, allow_blank=True)
+    name = serializers.CharField(max_length=128, allow_null=True, allow_blank=True)
+    component = serializers.CharField(max_length=128, allow_null=True, allow_blank=True)
+    meta = serializers.SerializerMethodField()
+    redirect = serializers.CharField(max_length=128, allow_null=True, allow_blank=True)
+    hidden = serializers.BooleanField()
+    children = serializers.SerializerMethodField()
+
+    def get_meta(self, instance):
+        return {
+            'title': instance.title, 'icon': instance.icon}
+
+    # def get_alwaysShow(self, instance):
+    #     return instance.hidden == 1
+
+    def get_children(self, instance):
+        # menus:用户所有的菜单
+        menus = self.context['menus']
+        # children列表
+        children = []
+        for m in menus:
+            if m.parent == None:
+                continue
+            if m.parent.id == instance.id:
+                item = MenuTreeSerializer(m, context={'menus': menus})
+                children.append(item.data)
+            else:
+                continue
+        return children

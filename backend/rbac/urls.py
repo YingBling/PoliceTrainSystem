@@ -22,9 +22,10 @@ router.register('menu', views.MenuViewSet)
 app_name = "rbac"
 urlpatterns = [
     # re_path(r'^get_user_info/$', utils.LoginView.as_view()),
-    re_path(r'^users/$', views.UserAPIView.as_view()),
-    re_path(r'^users/(?P<pk>\d+)/$', views.UserAPIView.as_view()),
+    # re_path(r'^users/$', views.UserAPIView.as_view()),
+    # re_path(r'^users/(?P<pk>\d+)/$', views.UserAPIView.as_view()),
     re_path(r'^user/info/$',views.UserViewSet.as_view({'get':'get_user_info'})),
-    re_path('import_user/', views.ImportUser.as_view())
+    re_path('import_user/', views.ImportUser.as_view()),
+    re_path('user/get_menus/',views.UserViewSet.as_view({'get':'get_menus'}))
 ]
 urlpatterns += router.urls
