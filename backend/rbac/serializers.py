@@ -123,7 +123,58 @@ class UserSerializer(ModelSerializer):
 
 class UserInfoSerializer(ModelSerializer):
     roles = StringRelatedField(source='role', many=True, read_only=True)
+
     class Meta:
         model = User
         fields = ['id', 'username', 'name',
                   'roles', 'avatar', 'dept', 'post']
+
+
+class MenuTreeSerializer(serializers.Serializer):
+    """
+    返回菜单树，
+    [{
+        "path": "/permission",
+        "component": "Layout",
+        "meta": {
+            "title": "权限管理",
+            "icon": "el-icon-lock"
+        },
+        "name": "permission",
+        "redirect": "/permission/users",
+        "alwaysShow": true,
+        children数组必须要是用户的目录列表
+        "children": [
+            {
+                "path": "users",
+                "name": "users",
+                "component": "permission/user",
+                "meta": {
+                    "title": "用户列表",
+                    "icon": "el-icon-user"
+                },
+                "hidden": false
+            }
+        ]
+        }]
+    """
+    path = serializers.CharField(source='Menu.path', max_length=128, allow_null=True, allow_blank=True)
+    name = serializers.CharField(source='Menu.name', max_length=128, allow_null=True, allow_blank=True)
+    component = serializers.CharField(source='Menu.component', max_length=128, allow_null=True, allow_blank=True)
+    meta = serializers.SerializerMethodField()
+    redirect = serializers.CharField(source='Menu.redirect', max_length=128, allow_null=True, allow_blank=True)
+    alwaysShow = serializers.SerializerMethodField()
+    children = serializers.SerializerMethodField()
+
+    def get_meta(self, instance):
+        return {instance.title, instance.icon}
+
+    def get_alwaysShow(self, instance):
+        return instance.hidden == 1
+
+    def get_children(self, instance):
+        # children列表
+        menus = self.context['menus']
+        children = []
+        # for
+        return children

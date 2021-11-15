@@ -29,6 +29,6 @@ urlpatterns = [
     re_path('^api/login/$', LoginView.as_view()),
     re_path('^api/reset-password/$', ResetPasswordView.as_view()),
     re_path('^api/refresh/$', token_refresh),
-    # 获取资源
+    # 获取资源接口
     re_path(r'media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
 ]
