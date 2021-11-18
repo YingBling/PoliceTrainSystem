@@ -170,9 +170,6 @@ class MenuTreeSerializer(serializers.Serializer):
         return {
             'title': instance.title, 'icon': instance.icon}
 
-    # def get_alwaysShow(self, instance):
-    #     return instance.hidden == 1
-
     def get_children(self, instance):
         # menus:用户所有的菜单
         menus = self.context['menus']
