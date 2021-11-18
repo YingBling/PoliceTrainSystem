@@ -1,6 +1,9 @@
 from django.db import transaction
 
 # Create your views here
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
+from rest_framework import status
 
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
@@ -150,6 +153,11 @@ class UserViewSet(ModelViewSet):
     filter_fields = ['name', 'dept', 'role', 'post']  # 过滤器
     ordering_fields = ['id', 'dept']  # 排序
 
+    @swagger_auto_schema(
+        operation_summary='用户信息',
+        operation_description='获取用户信息',
+        responses={status.HTTP_200_OK: UserInfoSerializer}
+    )
     def get_user_info(self, request):
         """
         获取用户的用户名，id，头像等等
@@ -186,6 +194,11 @@ class UserViewSet(ModelViewSet):
             'button_list': button_ser.data
         })
 
+    @swagger_auto_schema(
+        operation_summary='用户菜单',
+        operation_description='获取该用户的所有菜单',
+        responses={status.HTTP_200_OK: MenuTreeSerializer}
+    )
     def get_menus(self, request):
         user = request.user
         # 用户所有的角色

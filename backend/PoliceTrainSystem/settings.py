@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'rbac',  # Rbac模块,用户权限验证模型
     'apps.lesson',  # 课程管理模块
     'django_filters',
-    'utils'
+    'utils',
+    'drf_yasg'
 ]
 
 # 用户权限验证使用的模型
