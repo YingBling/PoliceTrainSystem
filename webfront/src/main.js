@@ -1,33 +1,62 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import Vuex from 'vuex'
-import App from './App'
-import router from './router'
-import VueResource from 'vue-resource'
+
+import 'normalize.css/normalize.css' // A modern alternative to CSS resets
+
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
+import '@/styles/index.scss' // global css
+import VideoPlayer from 'vue-video-player' // 导入视频播放插件
+import TreeTable from 'vue-table-with-tree-grid'
+import vuescroll from 'vuescroll' // 导入滚动条插件
+import 'vuescroll/dist/vuescroll.css'
+require('vue-video-player/src/custom-theme.css')
+require('video.js/dist/video-js.css')
+import App from './App'
+import store from './store'
+import router from './router'
 import axios from 'axios'
-import Router from "vue-router";
+import { getToken } from "@/utils/auth"
+import vuex from 'vuex'
 
-Vue.use(ElementUI)
-Vue.use(VueResource)
-Vue.use(Router)
+import '@/icons' // icon
+import '@/permission' // permission control
+/**
+ * If you don't want to use mock-server
+ * you want to use MockJs for mock api
+ * you can execute: mockXHR()
+ *
+ * Currently MockJs will be used in the production environment,
+ * please remove it before going online ! ! !
+ */
+// 注释掉mock生成数据
+// if (process.env.NODE_ENV === 'production') {
+//   const { mockXHR } = require('../mock')
+//   mockXHR()
+// }
 
-// axios.defaults.baseURL = 'http://127.0.0.1:8000/api/user/'
-Vue.prototype.$axios = axios // 全局注册，使用方法为:this.$axios
-/* eslint-disable no-new */
+// set ElementUI lang to EN
+Vue.use(ElementUI, { locale })
+Vue.use(VideoPlayer)
+Vue.use(vuescroll)
+Vue.use(vuex)
+Vue.component('tree-table', TreeTable)
+// 如果想要中文版 element-ui，按如下方式声明
+// Vue.use(ElementUI)
+Vue.prototype.$axios = axios
+Vue.config.productionTip = false
 
-router.beforeEach((to, from, next) => {
-  window.document.title = to.meta.title == undefined ? '执法训练管理平台' : to.meta.title
-
-    next();
-})
 new Vue({
   el: '#app',
   router,
-  components: {App},
-  template: '<App/>'
-})
-
+  store,
+  render: h => h(App),
+  beforeCreate() {
+    // 全局事件总线
+    // A与B是兄弟，B要给A发送信息,A收到信息以后打印出来
+    // A.$bus.$on('sendMessage',console.log(message))
+    // B.$bus.$emit('sendMessage',message)
+    Vue.prototype.$bus = this
+  }
+}).$mount('#app')
