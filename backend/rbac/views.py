@@ -203,15 +203,25 @@ class UserViewSet(ModelViewSet):
         user = request.user
         # 用户所有的角色
         roles = user.role.all()
+        # 菜单列表全部菜单
+        root_menus = Menu.objects.none()
+        # print(repr(root_menus))
+        menus = Menu.objects.none()
         for role in roles:
-            menus = role.menus.all()
-            root_menus = Menu.objects.none()
-            for m in menus:
-                if m.parent == None:
-                    root_menus = root_menus | m
-            # print(root_menus)
-            serializer = MenuTreeSerializer(instance=root_menus, context={'menus': menus})
-            return Response(serializer.data)
+            '''
+            找到所有角色的一级菜单
+            '''
+            menus = menus | role.menus.all()
+            # print(menus)
+            # root_menus = Menu.objects.none()
+            # for m in menus:
+            #     print(repr(m))
+            root_menus = root_menus | role.menus.filter(parent=None)
+        root_menus = root_menus.distinct().order_by('sort')
+        # print(root_menus)
+        menus = menus.distinct().order_by('sort')
+        serializer = MenuTreeSerializer(instance=root_menus,many=True,context={'menus': menus})
+        return Response(serializer.data)
 
 
 class DeptViewSet(ModelViewSet):
