@@ -174,13 +174,20 @@ class MenuTreeSerializer(serializers.Serializer):
         # menus:用户所有的菜单
         menus = self.context['menus']
         # children列表
+        temp = Menu.objects.none()
         children = []
-        for m in menus:
-            if m.parent == None:
-                continue
-            if m.parent.id == instance.id:
-                item = MenuTreeSerializer(m, context={'menus': menus})
-                children.append(item.data)
-            else:
-                continue
+        temp = menus.filter(parent=instance).order_by('sort')
+        # print(instance)
+        # print(temp)
+        for t in temp:
+            item = MenuTreeSerializer(t, context={'menus': menus})
+            children.append(item.data)
+        # for m in menus:
+        #     if m.parent == None:
+        #         continue
+        #     if m.parent.id == instance.id:
+        #         item = MenuTreeSerializer(m, context={'menus': menus})
+        #         children.append(item.data)
+        #     else:
+        #         continue
         return children
