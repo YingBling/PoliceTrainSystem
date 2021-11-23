@@ -4,7 +4,7 @@
     <el-card>
       <el-row style="padding-bottom: 20px">
         <el-col>
-          <el-button type="primary">添加分类</el-button>
+          <el-button type="primary" @click="showAddCateDialog">添加分类</el-button>
         </el-col>
       </el-row>
 <!--      表格-->
@@ -40,6 +40,28 @@
       />
     </el-card>
 <!--    添加分类的对话框-->
+    <el-dialog
+      title="添加分类"
+      :visible.sync="addCateDialogVisible"
+      width="30%">
+<!--      添加分类的表单-->
+      <el-form :model="addCateForm" :rules="addCateFormRules" ref="addCateFormRef" label-width="100px">
+        <el-form-item label="分类名称" prop="cat_name">
+          <el-input v-model="addCateForm.cat_name"></el-input>
+        </el-form-item>
+        <el-form-item label="父级分类">
+          <el-cascader
+            v-model="selectedKeys"
+            :options="parentCateList"
+            :props="cascaderProps"
+             @change="parentCateChange"></el-cascader>
+        </el-form-item>
+      </el-form>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="addCateDialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="addCateDialogVisible = false">确 定</el-button>
+  </span>
+</el-dialog>
   </div>
 </template>
 
@@ -116,11 +138,77 @@ export default {
           type: 'template',
           template: 'opt'
         }
-      ]
+      ],
+      // 控制添加分类对话框显示与隐藏
+      addCateDialogVisible: false,
+      addCateForm: {
+        cat_id: '',
+        cat_name: '',
+        cat_pid: '',
+        cat_level: ''
+      },
+      addCateFormRules: {
+        cat_name: [
+          { required: true, message: '请输入分类名称', trigger: 'blur' }]
+      },
+      // 父级分类列表
+      parentCateList: [
+        {
+          cat_id: 23,
+          cat_name: 'python',
+          cat_pid: '0',
+          cat_level: '1',
+          children: {
+            cat_id: 26,
+            cat_name: 'python入门',
+            cat_pid: '23',
+            cat_level: '2'
+          }
+        }, {
+          cat_id: 24,
+          cat_name: 'java',
+          cat_pid: '0',
+          cat_level: '1',
+          children: {
+            cat_id: 27,
+            cat_name: 'java入门',
+            cat_pid: '24',
+            cat_level: '2'
+          }
+        }, {
+          cat_id: 25,
+          cat_name: 'vue',
+          cat_pid: '0',
+          cat_level: '1',
+          children: {
+            cat_id: 28,
+            cat_name: 'vue入门',
+            cat_pid: '25',
+            cat_level: '2'
+          }
+        }],
+      // 指定级联选择器的配置对象
+      cascaderProps: {
+        expandTrigger: 'hover',
+        value: 'cat_id',
+        label: 'cat_name',
+        children: [{
+          value: 'children.cat_id',
+          label: 'children.cat_name'
+        }]
+      },
+      // 选中的父级分类的Id数组
+      selectedKeys: []
     }
   },
   methods: {
-    getCate() { }
+    getCate() { },
+    showAddCateDialog() {
+      this.addCateDialogVisible = true
+    },
+    parentCateChange() {
+      console.log(this.selectedKeys)
+    }
   }
 }
 </script>

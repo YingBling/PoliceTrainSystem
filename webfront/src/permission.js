@@ -32,17 +32,29 @@ router.beforeEach(async(to, from, next) => {
       const hasRoles = store.getters.roles && store.getters.roles.length > 0
       // 如果不为空,说明store\modules\permission.js这里面已经筛选过路由直接通过next()放行
       if (hasRoles) {
+        console.log('有用户信息')
         next() // 如果获取了 放行
       } else { // 没有就获取用户信息
         // else如果没有获取到角色，
         // 通过const { roles } = await store.dispatch(‘user/getInfo’)这个去store\modules\user.js获取角色信息，
         // 然后再调用 const accessRoutes = await store.dispatch(‘permission/generateRoutes’, roles)去文件store\modules\permission.js筛选出指定的路由返回
+        console.log('没有用户信息')
         try {
           // 返回的roles必须是object array,如: ['admin'] or ,['developer','editor']
           store.dispatch('user/getInfo').then(res => {
-            const roles = res.role_list
-            store.dispatch('permission/generateRoutes', { roles }).then(accessRoutes => {
-              router.addRoutes(accessRoutes)
+            console.log('拿到用户角色信息')
+            console.log(res)
+            const roles = res.roles
+            store.dispatch('permission/generateRoutes', { roles }).then(accessedRoutes => {
+              console.log(accessedRoutes)
+              router.addRoutes(accessedRoutes)
+              accessedRoutes.forEach((item, index) => {
+                router.options.routes[index] = item
+              })
+              // for (let i = 0, length = accessedRoutes.length; i < length; i += 1) {
+              //   const element = accessedRoutes[i]
+              //   router.addRoute(element)
+              // }
               next({ ...to, replace: true })
             })
           })
@@ -54,7 +66,7 @@ router.beforeEach(async(to, from, next) => {
           // 设置replace: true，这样导航将不会留下历史记录 record
           // 调用next({ …to, replace: true })让router.beforeEach（）重新执行一遍
         } catch (error) {
-          // remove token and go to login page to re-login
+          // 删除token,进入登录页面重新登录
           await store.dispatch('user/resetToken')
           Message.error(error || 'Has Error')
           next(`/login?redirect=${to.path}`)

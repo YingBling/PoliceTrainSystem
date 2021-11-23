@@ -1,5 +1,4 @@
 import { login, logout, getInfo } from '@/api/login'
-// import { getRouters } from '@/api/menu'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -8,7 +7,9 @@ const getDefaultState = () => {
     // 设置token的共享状态，token持久化 => 放到缓存中
     token: getToken(),
     id: '',
+    username: '',
     name: '',
+    avatar: '',
     roles: []
   }
 }
@@ -25,8 +26,14 @@ const mutations = {
   SET_ID: (state, id) => {
     state.id = id
   },
+  SET_USERNAME: (state, username) => {
+    state.username = username
+  },
   SET_NAME: (state, name) => {
     state.name = name
+  },
+  SET_AVATAR: (state, avatar) => {
+    state.avatar = avatar
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
@@ -45,7 +52,7 @@ const actions = {
         // 2.更改store中的状态 通过提交mutations 调用commit方法，第一个参数 一个回调函数，执行修改逻辑的函数，第二个 是mutations的载荷(一般为你需要修改的状态值)
         commit('SET_TOKEN', data.access)
         commit('SET_ID', data.id)
-        commit('SET_NAME', data.username)
+        commit('SET_USERNAME', data.username)
         setToken(data.access)
         // window.sessionStorage.setItem('loginData', JSON.stringify(data))
         resolve()
@@ -59,13 +66,15 @@ const actions = {
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       getInfo(state.id).then(response => {
-        console.log('@@@@@@@')
-        const { role_list } = response.data
+        const user = response.data
+        const { roles } = response.data
         // roles must be a non-empty array
-        if (!role_list || role_list.length <= 0) {
+        if (!roles || roles.length <= 0) {
           reject('getInfo: roles must be a non-null array!')
         }
-        commit('SET_ROLES', role_list)
+        commit('SET_NAME', user.name)
+        commit('SET_AVATAR', user.avatar)
+        commit('SET_ROLES', roles)
         resolve(response.data)
       }).catch(error => {
         reject(error)
@@ -76,7 +85,8 @@ const actions = {
   // getRoutes({ commit, state }) {
   //   return new Promise((resolve, reject) => {
   //     getRouters(state.token).then(response => {
-  //       const { menus } = response
+  //       console.log(response)
+  //       const menus = response
   //       if (!menus || menus.length <= 0) {
   //         reject('无法获取菜单')
   //       }
@@ -91,6 +101,8 @@ const actions = {
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
+        commit('SET_TOKEN', '')
+        commit('SET_ROLES', [])
         removeToken() // must remove  token  first
         resetRouter()
         commit('RESET_STATE')

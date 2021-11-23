@@ -8,16 +8,16 @@ export function login(data) {
   })
 }
 
-export function getInfo(id) {
+export function getInfo() {
   return request({
-    url: '/api/rbac/users/' + id,
+    url: '/api/rbac/user/info/',
     method: 'get'
   })
 }
 
 export function logout() {
   return request({
-    url: '/vue-admin-template/user/logout',
-    method: 'post'
+    url: '/api/logout/',
+    method: 'get'
   })
 }
