@@ -1,7 +1,6 @@
 import { constantRoutes } from '@/router'
 import { getRouters } from '@/api/menu'
 import Layout from '@/layout'
-
 // export function rFormat(routers) {
 // // 简单检查是否是可以处理的数据
 //   if (!(routers instanceof Array)) {
@@ -48,6 +47,7 @@ import Layout from '@/layout'
 //   })
 //   return fmRouters
 // }
+
 export function filterAsyncRouter(asyncRouterMap) {
   // 遍历后台传来的路由字符串，转换为组件对象
   const accessedRouters = asyncRouterMap.filter(route => {
@@ -69,7 +69,9 @@ export function filterAsyncRouter(asyncRouterMap) {
   return accessedRouters
 }
 export const loadView = (view) => {
-  return (resolve) => require([`@/views/${view}`], resolve)
+  // return require(`@/views${view}`) // 空页面
+  // return require(`@/views${view}`).default  // 有效
+  return resolve => require([`@/views${view}`], resolve) // 有效
 }
 // 定义state
 const state = {

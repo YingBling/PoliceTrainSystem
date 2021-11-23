@@ -5,9 +5,9 @@
         <el-col :span="36" :xs="24">
            <!-- 搜索框 -->
           <el-form ref="queryForm" :model="queryParams" :inline="true" label-width="68px">
-            <el-form-item label="账号" prop="userid">
+            <el-form-item label="账号" prop="username">
               <el-input
-                v-model="queryParams.id"
+                v-model="queryParams.username"
                 placeholder="请输入账号"
                 clearable
                 size="small"
@@ -15,9 +15,9 @@
                 @keyup.enter.native="handleQuery"
               />
             </el-form-item>
-            <el-form-item label="姓名" prop="username">
+            <el-form-item label="姓名" prop="name">
               <el-input
-                v-model="queryParams.username"
+                v-model="queryParams.name"
                 placeholder="请输入姓名"
                 clearable
                 size="small"
@@ -49,7 +49,7 @@
               <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
             </el-form-item>
           </el-form>
-          <!--增删改导入按钮-->
+          <!--增删导入导出按钮-->
           <el-row :gutter="10" class="mb8">
             <el-col :span="1.5">
               <el-button
@@ -59,17 +59,6 @@
                 size="mini"
                 @click="handleAdd"
               >新增
-              </el-button>
-            </el-col>
-            <el-col :span="1.5">
-              <el-button
-                type="success"
-                plain
-                icon="el-icon-edit"
-                size="mini"
-                :disabled="single"
-                @click="handleUpdate"
-              >修改
               </el-button>
             </el-col>
             <el-col :span="1.5">
@@ -140,9 +129,14 @@
               :show-overflow-tooltip="true"
             >
               <template slot-scope="scope">
-                <p v-for="item in scope.row.role_list">
-                  {{ item }}
-                </p>
+                <template v-if="scope.row.role_list.length > 0">
+                  <span v-for="item in scope.row.role_list">
+                    {{ item }}
+                  </span>
+                </template>
+                <template v-else>
+                  <span>暂无角色</span>
+                </template>
               </template>
             </el-table-column>
             <el-table-column
@@ -198,15 +192,15 @@
             </el-table-column>
           </el-table>
           <!--   分页区-->
-          <div class="pagination-container">
-            <el-pagination
-              :current-page="queryParams.pageNum"
-              :page-size="queryParams.pageSize"
-              layout='total, prev, pager, next, jumper'
-              :total="total"
-              style="text-align: right;margin-top: 30px"
-              @current-change="getList"/>
-          </div>
+<!--          <div class="pagination-container">-->
+<!--            <el-pagination-->
+<!--              :current-page="queryParams.pageNum"-->
+<!--              :page-size="queryParams.pageSize"-->
+<!--              layout='total, prev, pager, next, jumper'-->
+<!--              :total="total"-->
+<!--              style="text-align: right;margin-top: 30px"-->
+<!--              @current-change="getList"/>-->
+<!--          </div>-->
           <!-- 分页区域 -->
           <!--          page	当前页数  支持 .sync 修饰符	-->
           <!--          limit	每页显示条目个数-->
@@ -220,6 +214,92 @@
         </el-col>
       </el-row>
     </el-card>
+    <!--  添加或修改参数配置对话框  -->
+    <el-dialog :title="title" :visible.sync="open" width="600px" append-to-body>
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="姓名" prop="name">
+              <el-input v-model="form.name" placeholder="请输入用户昵称" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="角色">
+              <el-select v-model="form.roleIds" multiple placeholder="请选择">
+                <el-option
+                  v-for="item in roleOptions"
+                  :key="item.id"
+                  :label="item.roleName"
+                  :value="item.id"
+                  :disabled="item.status == 0"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="手机号码" prop="mobile">
+              <el-input v-model="form.mobile" placeholder="请输入手机号码" maxlength="11" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="邮箱" prop="email">
+              <el-input v-model="form.email" placeholder="请输入邮箱" maxlength="50" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item v-if="form.id == undefined" label="用户名称" prop="username">
+              <el-input v-model="form.username" placeholder="请输入用户名称" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item v-if="form.id == undefined" label="用户密码" prop="password">
+              <el-input v-model="form.password" placeholder="请输入用户密码" type="password" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="性别">
+              <el-select v-model="form.gender" placeholder="请选择">
+                <el-option
+                  v-for="dict in sexOptions"
+                  :key="dict.dictValue"
+                  :label="dict.dictLabel"
+                  :value="dict.dictValue"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="状态">
+              <el-radio-group v-model="form.is_active">
+                <el-radio
+                  v-for="dict in statusOptions"
+                  :key="dict.dictValue"
+                  :label="dict.dictValue"
+                >{{ dict.dictLabel }}
+                </el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="24">
+            <el-form-item label="备注">
+              <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
 
   </div>
 </template>
@@ -232,27 +312,55 @@ export default {
   components: { Pagination },
   data() {
     return {
-      // 非单个禁用
-      single: true,
       // 非多个禁用
-      multiple: true,
+      multiple: false,
+      // 选中数组
+      ids: [],
       // 总条数
       total: 0,
-      // 当前页
-      // currentPage: 1,
-      // 每页记录数
-      // limit: 10,
       // 用户表格数据
       userList: null,
+      // 弹出层标题
+      title: '',
+      // 是否显示弹出层
+      open: false,
       // 状态数据字典
       statusOptions: [{ dictLabel: '正常', dictValue: true }, { dictLabel: '停用', dictValue: false }],
+      // 表单参数
+      form: {},
       // 查询参数
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        id: undefined,
         username: undefined,
+        name: undefined,
         is_active: undefined
+      },
+      // 表单校验
+      rules: {
+        username: [
+          { required: true, message: '用户名不能为空', trigger: 'blur' }
+        ],
+        name: [
+          { required: true, message: '姓名不能为空', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '用户密码不能为空', trigger: 'blur' }
+        ],
+        email: [
+          {
+            type: 'email',
+            message: '请输入正确的邮箱地址',
+            trigger: ['blur', 'change']
+          }
+        ],
+        mobile: [
+          {
+            pattern: /^1[3|4|5|6|7|8|9][0-9]\d{8}$/,
+            message: '请输入正确的手机号码',
+            trigger: 'blur'
+          }
+        ]
       }
     }
   },
@@ -268,25 +376,59 @@ export default {
         this.total = res.count
       })
     },
+    // 多选框选中数据
+    handleSelectionChange(selection) {
+      this.ids = selection.map(item => item.id)
+      this.multiple = !selection.length
+    },
+    // 搜索按钮功能
     handleQuery() {
       this.getList()
     },
-    // 清空
+    // 重置按钮：清空搜索栏
     resetQuery() {
       // 1.表单输入项数据清空
       this.queryParams = {}
-      // 2.查询所有讲师数据
+      // 2.查询所有数据
       this.getList()
     },
+    // 用户状态修改
+    handleStatusChange(row) {
+      const text = row.is_active === true ? '启用' : '停用'
+      this.$confirm('确认要"' + text + '""' + row.username + '"用户吗?', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(function() {
+        // 修改用户状态的接口？？？
+        return changeUserStatus(row.id, row.is_active)
+      }).then(() => {
+        this.msgSuccess(text + '成功')
+      }).catch(function() {
+        row.is_active = row.is_active === false
+      })
+    },
+    // 新增用户
     handleAdd() {
+      this.open = true
+      this.title = '添加用户'
     },
+    // 修改用户信息
     handleUpdate(row) {
+      this.open = true
+      this.title = '修改用户'
     },
-    handleDelete(id) {
+    // 删除用户
+    handleDelete() {
     },
+    // 用户导入
     handleExport() {
     },
+    // 用户导出
     handleImport() {
+    },
+    // 重置用户密码
+    handleResetPwd(row) {
     }
   }
 }

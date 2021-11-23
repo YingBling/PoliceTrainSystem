@@ -6,7 +6,7 @@
         <div class="item-title">
           <router-link
             :to="{
-              path:'/lesson/studyDetail',
+              path:'/lesson/study/detail/studyDetail',
               headers:{
                 authorization:''
               },

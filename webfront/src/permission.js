@@ -51,10 +51,6 @@ router.beforeEach(async(to, from, next) => {
               accessedRoutes.forEach((item, index) => {
                 router.options.routes[index] = item
               })
-              // for (let i = 0, length = accessedRoutes.length; i < length; i += 1) {
-              //   const element = accessedRoutes[i]
-              //   router.addRoute(element)
-              // }
               next({ ...to, replace: true })
             })
           })
